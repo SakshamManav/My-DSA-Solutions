@@ -1,0 +1,289 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+// 01) ---->>> Find the largest Number----->>>>>>>>>
+// Example :
+// Input: arr[] = {2,5,1,3,0};
+// Output: 5
+// Explanation: 5 is the largest element in the array. 
+
+// int main(){
+    // vector<int> arr = {101,2,5,1,3,7,8,9,0};
+    // 1st method - linear search
+    // int largest = arr[0];
+    // for (int i = 0; i < arr.size(); i++)
+    // {
+    //     if(arr[i]>largest){
+    //         largest = arr[i];
+    //     }
+    // }
+    // cout<<largest<<" is the largest number in the given array"<<endl;
+
+    // 2nd method - by sorting
+    // vector<int> arr = {101,2,5,1,3,7,8,9,0};
+    // sort(arr.begin(), arr.end());
+    
+    // for (int i = 0; i < arr.size(); i++)
+    // {
+    //     int min_index = i;
+    //     for (int j = i+1; j < arr.size(); j++)
+    //     {
+    //         if(arr[min_index] > arr[j]){
+    //             min_index = j;
+    //         }
+    //     }
+    //     if(min_index != i){
+    //         swap(arr[min_index], arr[i]);
+    //     }
+    // }
+//     for(auto it: arr){
+//         cout<<it<< " ";
+//     }
+//     cout<<"\n"<<arr[arr.size()-1]<<" is the largest number of given array"<<endl;
+// }
+
+
+
+
+// 02)  --->>> Find Second Smallest and Second Largest Element in an array without sorting --->>>>
+// Example :
+// Input: [1,2,4,7,7,5]
+// Output: Second Smallest : 2
+// 	Second Largest : 5
+// Explanation: The elements are as follows 1,2,4,5,7,7 and hence second largest of these is 5 and second smallest is 2
+
+// int main(){
+//     vector<int> arr ={1,2,4,7,7,5};
+//     int smallest_elem = arr[0];
+//     int largest_elem = arr[0];
+
+//     for (int i = 0; i < arr.size()-1; i++)
+//     {
+//        smallest_elem =  min(arr[i], smallest_elem );
+//        largest_elem = max(arr[i], largest_elem);
+//     }
+
+//     cout<<"smallest_elem : "<<smallest_elem<< " largest_elem : "<< largest_elem<<endl;
+    
+//     int second_smallest_elem=INT_MAX;
+//     int second_largest_elem=INT_MIN;
+//     for (int i = 0; i < arr.size(); i++)
+//     {
+//         if(arr[i]>second_largest_elem && arr[i]!= largest_elem){
+//             second_largest_elem = arr[i];
+//         }
+//         if(arr[i]<second_smallest_elem && arr[i] != smallest_elem){
+//             second_smallest_elem = arr[i];
+//         }
+//     }
+    
+    // ------------------------------------------------------------------------
+    // My attempt -- it is working but time complexity is high and we can also find it using sort but we dont have to do that as mentioned
+    // for (int i = 0; i < arr.size(); i++)
+    // {
+    //     if(arr[i]>smallest_elem){
+    //         second_smallest_elem = arr[i];
+    //         for (int j = 0; j < arr.size(); j++)
+    //         {
+    //             if(arr[j] == smallest_elem){
+    //                 continue;
+    //             }
+    //             else if(arr[j]<second_smallest_elem){
+    //                 second_smallest_elem = arr[j];
+    //             }
+    //         }
+    //     }
+    //     if(arr[i]<largest_elem){
+    //         second_largest_elem = arr[i];
+    //         for (int j = 0; j < arr.size(); j++)
+    //         {
+    //             if(arr[j] == largest_elem){
+    //                 continue;
+    //             }
+    //             else if(arr[j]>second_largest_elem){
+    //                 second_largest_elem = arr[j];
+    //             }
+    //         }
+    //     }
+      
+       
+    // }
+    //------------------------------------------------------------------
+
+//     cout<<"second_smallest_elem : "<<second_smallest_elem<<" second_largest_elem : "<< second_largest_elem;
+    
+    
+// }
+// most optimal solution of second problem
+// #include<bits/stdc++.h>
+// using namespace std;
+// int secondSmallest(int arr[],int n)
+// {
+//     if(n<2)
+//         return -1;
+//     int small = INT_MAX;
+//     int second_small = INT_MAX;
+//     int i;
+//     for(i = 0; i < n; i++) 
+//     {
+//        if(arr[i] < small)
+//        {
+//           second_small = small;
+//           small = arr[i];
+//        }
+//        else if(arr[i] < second_small && arr[i] != small)
+//        {
+//           second_small = arr[i];
+//        }
+//     }
+//    return second_small;     
+// }
+// int secondLargest(int arr[],int n)
+// {
+// 	if(n<2)
+// 	return -1;
+//     int large=INT_MIN,second_large=INT_MIN;
+//     int i;
+//     for (i = 0; i < n; i++) 
+//     {
+//         if (arr[i] > large) 
+//         {
+//             second_large = large;
+//             large = arr[i];
+//         }
+ 
+//         else if (arr[i] > second_large && arr[i] != large) 
+//         {
+//             second_large = arr[i];
+//         }
+//     }
+//     return second_large;                
+// }
+
+// int main() {
+//     int arr[]={1,2,4,7,7,5};  
+//     int n=sizeof(arr)/sizeof(arr[0]);
+//         int sS=secondSmallest(arr,n);
+//         int sL=secondLargest(arr,n);
+//     cout<<"Second smallest is "<<sS<<endl;
+//     cout<<"Second largest is "<<sL<<endl;
+//     return 0;
+// }
+
+
+// 03) ---->>>> Check if given array is sorted or not
+// Example:
+// Input: N = 5, array[] = {1,2,3,4,5}
+// Output: True.
+// Explanation: The given array is sorted i.e Every element in the array is smaller than or equals to its next values, So the answer is True.
+
+// int main(){
+//     vector <int> arr =  {10};
+//     int isSorted = true;
+//     if(arr.size() >1){
+// if(arr[0]<=arr[1]){
+//             int num = arr[0];
+//     for (int i = 1; i < arr.size(); i++)
+//     {
+//         if(num <= arr[i]){
+//             isSorted = true;
+//             num = arr[i];
+//         }else{
+//             isSorted = false;
+//             break;
+//         }
+//     }
+// } else if(arr[0]>=arr[1]){
+//      int num = arr[0];
+//     for (int i = 1; i < arr.size(); i++)
+//     {
+//         if(num >= arr[i]){
+//             isSorted = true;
+//             num = arr[i];
+//         }else{
+//             isSorted = false;
+//             break;
+//         }
+//     }
+// }
+//     if(isSorted){
+//         cout<<"Yes given array is sorted"<<endl;
+//     }    
+//     else{
+//         cout<<"Given array is not sorted"<<endl;
+//     }
+//     }
+//     else{
+//         cout<<"Yes given array is sorted"<<endl;
+//     }
+// }
+
+// 04) Check if array is sorted and rotated
+// Example 1:
+// Input: nums = [3,4,5,1,2]
+// Output: true
+// Explanation: [1,2,3,4,5] is the original sorted array.
+// You can rotate the array by x = 3 positions to begin on the element of value 3: [3,4,5,1,2].
+// int main(){
+//     vector<int> arr = {2,1,3,4};
+//     int drop = 0;
+//     bool isSorted = true;
+//     int it=0;
+//     for (it = 0; it < arr.size(); it++)
+//     {
+//         if(arr[it]<=arr[it+1] && it != arr.size()-1){
+//             isSorted = true;
+//         }
+//         else if(arr[it]>arr[it+1] && it != arr.size()-1){
+//             isSorted = true;
+//             break;  
+//         }
+//     }
+//     // cout<<it;
+//     for (int i = it+1; i < arr.size(); i++)
+//     {
+//         if(arr[i]<= arr[i+1] && i != arr.size()-1){
+//             isSorted = true;
+//         }else if(i == arr.size()-1 && arr[i] <= arr[0]){
+//             isSorted = true;
+//         }
+//         else{
+//             isSorted = false;
+//             break;
+//         }
+//     }
+    
+//     cout<<isSorted;
+// }
+
+
+
+// 05) Remove Duplicates in-place from Sorted Array
+// Example 1: 
+// Input: arr[1,1,2,2,2,3,3]
+// Output: arr[1,2,3,_,_,_,_]
+// Explanation: Total number of unique elements are 3, i.e[1,2,3] and Therefore return 3 after assigning [1,2,3] in the beginning of the array.
+
+int main(){
+   vector <int>  arr = {0,1,1,1,1,1,1,2,2,2,3,3,0};
+   for (int i = 0; i < arr.size()-1; i++)
+   {
+    for (int j = arr.size()-1; j > i; j--)
+    {
+        if(arr[i]==arr[j]){
+           arr.erase(arr.begin() + j);
+        }
+    }
+   }
+
+//    for (int i = arr.size(); i > 0; i--)
+//    {
+//     if(arr[i] == no_in_place_of_duplicate){
+//         arr.erase(arr.begin() + i);
+//     }
+//    }
+   
+   for(auto it:arr){
+    cout<<it<<" ";
+   }
+}
