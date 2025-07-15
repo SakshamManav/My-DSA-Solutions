@@ -5,45 +5,42 @@ using namespace std;
 // Example :
 // Input: arr[] = {2,5,1,3,0};
 // Output: 5
-// Explanation: 5 is the largest element in the array. 
+// Explanation: 5 is the largest element in the array.
 
 // int main(){
-    // vector<int> arr = {101,2,5,1,3,7,8,9,0};
-    // 1st method - linear search
-    // int largest = arr[0];
-    // for (int i = 0; i < arr.size(); i++)
-    // {
-    //     if(arr[i]>largest){
-    //         largest = arr[i];
-    //     }
-    // }
-    // cout<<largest<<" is the largest number in the given array"<<endl;
+// vector<int> arr = {101,2,5,1,3,7,8,9,0};
+// 1st method - linear search
+// int largest = arr[0];
+// for (int i = 0; i < arr.size(); i++)
+// {
+//     if(arr[i]>largest){
+//         largest = arr[i];
+//     }
+// }
+// cout<<largest<<" is the largest number in the given array"<<endl;
 
-    // 2nd method - by sorting
-    // vector<int> arr = {101,2,5,1,3,7,8,9,0};
-    // sort(arr.begin(), arr.end());
-    
-    // for (int i = 0; i < arr.size(); i++)
-    // {
-    //     int min_index = i;
-    //     for (int j = i+1; j < arr.size(); j++)
-    //     {
-    //         if(arr[min_index] > arr[j]){
-    //             min_index = j;
-    //         }
-    //     }
-    //     if(min_index != i){
-    //         swap(arr[min_index], arr[i]);
-    //     }
-    // }
+// 2nd method - by sorting
+// vector<int> arr = {101,2,5,1,3,7,8,9,0};
+// sort(arr.begin(), arr.end());
+
+// for (int i = 0; i < arr.size(); i++)
+// {
+//     int min_index = i;
+//     for (int j = i+1; j < arr.size(); j++)
+//     {
+//         if(arr[min_index] > arr[j]){
+//             min_index = j;
+//         }
+//     }
+//     if(min_index != i){
+//         swap(arr[min_index], arr[i]);
+//     }
+// }
 //     for(auto it: arr){
 //         cout<<it<< " ";
 //     }
 //     cout<<"\n"<<arr[arr.size()-1]<<" is the largest number of given array"<<endl;
 // }
-
-
-
 
 // 02)  --->>> Find Second Smallest and Second Largest Element in an array without sorting --->>>>
 // Example :
@@ -64,7 +61,7 @@ using namespace std;
 //     }
 
 //     cout<<"smallest_elem : "<<smallest_elem<< " largest_elem : "<< largest_elem<<endl;
-    
+
 //     int second_smallest_elem=INT_MAX;
 //     int second_largest_elem=INT_MIN;
 //     for (int i = 0; i < arr.size(); i++)
@@ -76,43 +73,41 @@ using namespace std;
 //             second_smallest_elem = arr[i];
 //         }
 //     }
-    
-    // ------------------------------------------------------------------------
-    // My attempt -- it is working but time complexity is high and we can also find it using sort but we dont have to do that as mentioned
-    // for (int i = 0; i < arr.size(); i++)
-    // {
-    //     if(arr[i]>smallest_elem){
-    //         second_smallest_elem = arr[i];
-    //         for (int j = 0; j < arr.size(); j++)
-    //         {
-    //             if(arr[j] == smallest_elem){
-    //                 continue;
-    //             }
-    //             else if(arr[j]<second_smallest_elem){
-    //                 second_smallest_elem = arr[j];
-    //             }
-    //         }
-    //     }
-    //     if(arr[i]<largest_elem){
-    //         second_largest_elem = arr[i];
-    //         for (int j = 0; j < arr.size(); j++)
-    //         {
-    //             if(arr[j] == largest_elem){
-    //                 continue;
-    //             }
-    //             else if(arr[j]>second_largest_elem){
-    //                 second_largest_elem = arr[j];
-    //             }
-    //         }
-    //     }
-      
-       
-    // }
-    //------------------------------------------------------------------
+
+// ------------------------------------------------------------------------
+// My attempt -- it is working but time complexity is high and we can also find it using sort but we dont have to do that as mentioned
+// for (int i = 0; i < arr.size(); i++)
+// {
+//     if(arr[i]>smallest_elem){
+//         second_smallest_elem = arr[i];
+//         for (int j = 0; j < arr.size(); j++)
+//         {
+//             if(arr[j] == smallest_elem){
+//                 continue;
+//             }
+//             else if(arr[j]<second_smallest_elem){
+//                 second_smallest_elem = arr[j];
+//             }
+//         }
+//     }
+//     if(arr[i]<largest_elem){
+//         second_largest_elem = arr[i];
+//         for (int j = 0; j < arr.size(); j++)
+//         {
+//             if(arr[j] == largest_elem){
+//                 continue;
+//             }
+//             else if(arr[j]>second_largest_elem){
+//                 second_largest_elem = arr[j];
+//             }
+//         }
+//     }
+
+// }
+//------------------------------------------------------------------
 
 //     cout<<"second_smallest_elem : "<<second_smallest_elem<<" second_largest_elem : "<< second_largest_elem;
-    
-    
+
 // }
 // most optimal solution of second problem
 // #include<bits/stdc++.h>
@@ -124,7 +119,7 @@ using namespace std;
 //     int small = INT_MAX;
 //     int second_small = INT_MAX;
 //     int i;
-//     for(i = 0; i < n; i++) 
+//     for(i = 0; i < n; i++)
 //     {
 //        if(arr[i] < small)
 //        {
@@ -136,7 +131,7 @@ using namespace std;
 //           second_small = arr[i];
 //        }
 //     }
-//    return second_small;     
+//    return second_small;
 // }
 // int secondLargest(int arr[],int n)
 // {
@@ -144,24 +139,24 @@ using namespace std;
 // 	return -1;
 //     int large=INT_MIN,second_large=INT_MIN;
 //     int i;
-//     for (i = 0; i < n; i++) 
+//     for (i = 0; i < n; i++)
 //     {
-//         if (arr[i] > large) 
+//         if (arr[i] > large)
 //         {
 //             second_large = large;
 //             large = arr[i];
 //         }
- 
-//         else if (arr[i] > second_large && arr[i] != large) 
+
+//         else if (arr[i] > second_large && arr[i] != large)
 //         {
 //             second_large = arr[i];
 //         }
 //     }
-//     return second_large;                
+//     return second_large;
 // }
 
 // int main() {
-//     int arr[]={1,2,4,7,7,5};  
+//     int arr[]={1,2,4,7,7,5};
 //     int n=sizeof(arr)/sizeof(arr[0]);
 //         int sS=secondSmallest(arr,n);
 //         int sL=secondLargest(arr,n);
@@ -169,7 +164,6 @@ using namespace std;
 //     cout<<"Second largest is "<<sL<<endl;
 //     return 0;
 // }
-
 
 // 03) ---->>>> Check if given array is sorted or not
 // Example:
@@ -208,7 +202,7 @@ using namespace std;
 // }
 //     if(isSorted){
 //         cout<<"Yes given array is sorted"<<endl;
-//     }    
+//     }
 //     else{
 //         cout<<"Given array is not sorted"<<endl;
 //     }
@@ -236,7 +230,7 @@ using namespace std;
 //         }
 //         else if(arr[it]>arr[it+1] && it != arr.size()-1){
 //             isSorted = true;
-//             break;  
+//             break;
 //         }
 //     }
 //     // cout<<it;
@@ -252,38 +246,145 @@ using namespace std;
 //             break;
 //         }
 //     }
-    
+
 //     cout<<isSorted;
 // }
 
-
-
 // 05) Remove Duplicates in-place from Sorted Array
-// Example 1: 
+// Example 1:
 // Input: arr[1,1,2,2,2,3,3]
 // Output: arr[1,2,3,_,_,_,_]
 // Explanation: Total number of unique elements are 3, i.e[1,2,3] and Therefore return 3 after assigning [1,2,3] in the beginning of the array.
 
-int main(){
-   vector <int>  arr = {0,1,1,1,1,1,1,2,2,2,3,3,0};
-   for (int i = 0; i < arr.size()-1; i++)
-   {
-    for (int j = arr.size()-1; j > i; j--)
-    {
-        if(arr[i]==arr[j]){
-           arr.erase(arr.begin() + j);
-        }
-    }
-   }
+// int main(){
 
-//    for (int i = arr.size(); i > 0; i--)
+// My solution ---- >>> taking too much time - On^2
+//    vector <int>  arr = {0,1,1,1,1,1,1,2,2,2,3,3};
+//    for (int i = 0; i < arr.size()-1; i++)
 //    {
-//     if(arr[i] == no_in_place_of_duplicate){
-//         arr.erase(arr.begin() + i);
+//     for (int j = arr.size()-1; j > i; j--)
+//     {
+//         if(arr[i]==arr[j]){
+//            arr.erase(arr.begin() + j);
+//         }
 //     }
 //    }
-   
-   for(auto it:arr){
-    cout<<it<<" ";
-   }
+//    for(auto it:arr){
+//     cout<<it<<" ";
+//    }
+// vector <int>  arr = {0,0,0,1,1,1,1,1,1,2,2,2,3,3};
+// My solution again but it is better solution than previous one or i say optimal solution
+// vector <int> arr = {1, 1, 1, 2, 2, 3, 3, 4, 5, 5, 6};
+//     vector <int> arr = {1,2,3,4,5};
+//     bool isSorted = true;
+//     // int num = arr[0];
+//     int index = 1;
+//     for (int i = 1; i < arr.size(); i++)
+//     {
+//         if(arr[i] != arr[index-1]){
+//             // swap(arr[index], arr[i]);
+//             // num = arr[index];
+//             arr[index] = arr[i];
+//             index ++;
+//         }
+//     }
+//     // cout<<"index = "<<index<<endl;
+//     for(auto it:arr){
+//         cout<<it<<" ";
+//     }
+
+// }
+
+// 06) ---- >>>>  Left Rotate the Array by One
+// Example 1:
+// Input: N = 5, array[] = {1,2,3,4,5}
+// Output: 2,3,4,5,1
+// Explanation:
+// Since all the elements in array will be shifted
+// toward left by one so ‘2’ will now become the
+// first index and and ‘1’ which was present at
+// first index will be shifted at last.
+
+
+int main()
+{
+    // Brute force approach
+    // vector<int> arr = {1,2,3,4,5,6,7};
+    // int k = 3;
+    // string direction = "right";
+
+    // int i = 0;
+    // if (arr.size() > 1 && direction == "left") // when we have to shift the elements in left side by k position
+    // {
+    //     while (i < k)
+    //     {
+    //         int first_elem = arr[0];
+    //         for (int i = 0; i < arr.size()-1; i++)
+    //         {
+    //             arr[i] = arr[i + 1];
+    //         }
+    //         arr[arr.size() - 1] = first_elem;
+    //         i++;
+    //     }
+    // }
+    // else if(arr.size() > 1 && direction == "right"){  // when we have to shift the elements in right side by k position
+    //     while (i < k)
+    //     {
+    //         int last_elem = arr[arr.size()-1];
+    //         for (int i = arr.size()-1; i > 0; i--)
+    //         {
+    //             arr[i] = arr[i-1];
+    //         }
+    //         arr[0] = last_elem;
+    //         i++;
+    //     }
+    // }
+
+    // IN this it only takes One loop so time complexity is lesser than but still using much space
+    // vector<int> arr = {1,2,3,4,5,6,7};
+    // int k =3;
+    // int t = k % nums.size(); { for k > arr.size() we are using this}
+
+    // vector <int> temp(arr.size());
+    // for (int i = arr.size()-1; i >= 0; i--)
+    // {
+    //     int j = i-k;
+    //     if(j>=0){
+    //         temp[i] = arr[j];
+    //     }
+    //     else if(j<0){
+    //         j = (arr.size())+j;
+    //         temp[i] = arr[j];
+    //     }
+
+    // }
+    
+    // swap(arr, temp);
+    // for(auto it:arr){
+    //     cout<<it<<" ";
+    // }
+
+    // Optimal Solution
+    
+    // for left rotate
+    // vector<int> arr = {1,2,3,4,5,6,7};
+    // int k =3;
+    
+    // reverse(arr.begin(), arr.begin()+k);
+    // reverse(arr.begin() + k, arr.end());
+    // reverse(arr.begin(), arr.end());
+    //  for(auto it:arr){
+    //     cout<<it<<" ";
+    // }
+
+    // // for right rotate
+    // vector<int> nums = {1,2,3,4,5,6,7};
+    // int k =8;
+    //     k = k % nums.size();
+    //     reverse(nums.begin(), nums.end() - k);
+    //     reverse(nums.end() - k, nums.end());
+    //     reverse(nums.begin(), nums.end());
+    //   for(auto it:nums){
+    //     cout<<it<<" ";
+    // }
 }
