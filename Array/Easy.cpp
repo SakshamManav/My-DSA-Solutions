@@ -306,8 +306,8 @@ using namespace std;
 // first index will be shifted at last.
 
 
-int main()
-{
+// int main()
+// {
     // Brute force approach
     // vector<int> arr = {1,2,3,4,5,6,7};
     // int k = 3;
@@ -340,7 +340,7 @@ int main()
     //     }
     // }
 
-    // IN this it only takes One loop so time complexity is lesser than but still using much space
+    // IN this it only takes One loop so time complexity is lesser than but using much space
     // vector<int> arr = {1,2,3,4,5,6,7};
     // int k =3;
     // int t = k % nums.size(); { for k > arr.size() we are using this}
@@ -387,4 +387,86 @@ int main()
     //   for(auto it:nums){
     //     cout<<it<<" ";
     // }
-}
+// }
+
+// 07) Move all Zeros to the end of the array
+
+// Example :
+// Input: 1 ,0 ,2 ,3 ,0 ,4 ,0 ,1
+// Output: 1 ,2 ,3 ,4 ,1 ,0 ,0 ,0
+// Explanation: All the zeros are moved to the end and non-negative integers are moved to front by maintaining order
+
+
+// int main(){
+    // Not optimal solution - using On^2 time
+    // vector<int> nums = { 1 ,0 ,2 ,3 ,0 ,4 ,0 ,1};
+    // for(int i = nums.size()-1; i>=0; i--){
+    //         if(nums[i] == 0){
+    //             nums.push_back(nums[i]);
+    //             nums.erase(nums.begin() + i);
+    //         }
+    //     }
+
+    // Optimal Solution
+    // vector<int> nums = { 1 ,0 ,2 ,3 ,0 ,4 ,0 ,1};
+    // int j = -1;
+    // for (int i = 0; i < nums.size() ; i++)
+    // {
+    //     if(nums[i] == 0){
+    //         j = i; // Here we found the first instance or place of first zero in the array in left to right direction
+    //         break;
+    //     }
+    // }
+    // if(j == -1){
+    //     return -1;
+    // }
+    // else{
+    //     for (int i = j+1; i < nums.size(); i++)
+    // {
+    //     if(nums[i] != 0){
+    //         swap(nums[i], nums[j]);
+    //         j++;
+    //     }
+    // }
+    // }
+    
+    // for(auto it: nums){
+    //     cout<<it<<" ";
+    // }
+    
+
+    // }
+//  08) Find the Union of Two Sorted Arrays
+// Example :
+// Input:
+// n = 5,m = 5.
+// arr1[] = {1,2,3,4,5}  
+// arr2[] = {2,3,4,4,5}
+// Output:
+//  {1,2,3,4,5}
+
+// Explanation: 
+// Common Elements in arr1 and arr2  are:  2,3,4,5
+// Distnict Elements in arr1 are : 1
+// Distnict Elemennts in arr2 are : No distinct elements.
+// Union of arr1 and arr2 is {1,2,3,4,5} 
+    
+    int main(){
+        int arr1[] = {1,2,4,5};  
+        int arr2[] = {7};
+        int n = 4, m= 1;
+       set <int> s;
+       for (int i = 0; i < n; i++)
+       {
+        s.insert(arr1[i]);
+       }
+       
+        for (int i = 0; i < m; i++)
+        {
+            s.insert(arr2[i]);
+        }
+        
+        for(auto it:s){
+            cout<<it;
+        }
+    }
