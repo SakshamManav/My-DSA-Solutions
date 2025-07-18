@@ -150,7 +150,7 @@ int main(){
 
     map<int, string> mp;
     mp.insert({3, "Saksham"});
-    mp.insert({2, "Manav"});\
+    mp.insert({2, "Manav"});
     mp[1] = "Pandey"; // we can define it just like array
     // for(auto val: mp){
     //     cout<<val.first<<" : "<<val.second << endl;

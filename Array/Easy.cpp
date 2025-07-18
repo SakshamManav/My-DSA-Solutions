@@ -451,22 +451,123 @@ using namespace std;
 // Distnict Elemennts in arr2 are : No distinct elements.
 // Union of arr1 and arr2 is {1,2,3,4,5} 
     
-    int main(){
-        int arr1[] = {1,2,4,5};  
-        int arr2[] = {7};
-        int n = 4, m= 1;
-       set <int> s;
-       for (int i = 0; i < n; i++)
-       {
-        s.insert(arr1[i]);
-       }
+    // int main(){
+    //     int arr1[] = {1,2,4,5};  
+    //     int arr2[] = {7};
+    //     int n = 4, m= 1;
+    //    set <int> s;
+    //    for (int i = 0; i < n; i++)
+    //    {
+    //     s.insert(arr1[i]);
+    //    }
        
-        for (int i = 0; i < m; i++)
-        {
-            s.insert(arr2[i]);
-        }
+    //     for (int i = 0; i < m; i++)
+    //     {
+    //         s.insert(arr2[i]);
+    //     }
         
-        for(auto it:s){
-            cout<<it;
-        }
-    }
+    //     for(auto it:s){
+    //         cout<<it;
+    //     }
+    // }
+
+
+// 09) Find the missing number.
+// Given an array nums containing n distinct numbers in the range [0, n], return the only number in the range that is missing from the array.
+// Example :
+// Input Format: N = 5, array[] = {0,1,2,4,5}
+// Result: 3
+// Explanation: In the given array, number 3 is missing. So, 3 is the answer.
+
+int main(){
+    // Solved by me - takes much time and space
+    // vector <int> nums = {0,1,2,3,5};
+    // bool yes_is_present;
+    // int ans;
+    //     for(int i =0; i< nums.size(); i++){
+    //         yes_is_present = false;
+    //         for(int j=0; j< nums.size(); j++){
+    //             if(i == nums[j]){
+    //                 yes_is_present = true;
+    //                 break;
+    //             }
+               
+    //         }
+    //         if(!yes_is_present){
+    //             ans = i;
+    //             break;
+    //         }
+        
+    // }
+    // // int ans;
+    // cout << ans<< " is the missing number"<<endl;
+
+    // Better than previous one - also done by me
+    // sort(nums.begin(), nums.end());
+    //     int ans;
+    //     for (int i = 0; i < nums.size(); i++) {
+    //         if (i != nums[i]) {
+    //             return i;
+    //         }
+    //     }
+    //     return nums.size();
+
+    // Another Solution --
+// class Solution {
+// public:
+//     int missingNumber(vector<int>& nums) {
+//        int actual_sum = 0, actual_sum2 = 0;
+//        for(int i = 0; i<=nums.size(); i++){
+//         actual_sum += i;
+//        }
+//        for(int i=0; i< nums.size(); i++){
+//         actual_sum2 += nums[i];
+//        }
+//        return actual_sum - actual_sum2;
+//     }
+// };
+
+
+// Another Solution 
+// class Solution {
+// public:
+//     int missingNumber(vector<int>& nums) {
+//             unordered_map<int ,int> mp;
+//             for(int i =0; i< nums.size(); i++){
+//                 mp[nums[i]] = 1;
+//             }
+//             for(int i =0; i<nums.size(); i++){
+//                 if(mp[i] != 1){
+//                     return i;
+//                 }
+//             }
+//             return nums.size();
+//     }
+// };
+
+
+//     This problem can be solved by 3 methods:
+// 1.Hashing
+// 2.Sum Formula
+
+// Bit manupulation i.e using XOR.
+// Lets dicuss this method that which is more effiecient and why it has to be used:-
+
+// HASHING :- In this Method, We can iterate over all the element upto the n and compare it with the present element by creating the hash map of (n+1).
+// Time Complexity = O(n)
+// Space complexity =O(n)
+// Issue :- Though it is taking the space complexity of N, So we move on to the next Method.
+// Sum Formula :- In this we us e the sum formula i.e;
+// Sn = (N+1)/2 & Sum of all the array(Sa[]).
+// And after this we subtract the (Sn-Sa[]) to find the Missing Number.
+// Time Complexity = O(n)
+// Space complexity =O(1)
+// Issue :- It can cause the Overflow issue because in this we are adding the element, So if the array element is very large then it can cause Integer Overflow.
+// To handle out this Overflow we can use the Next Method which is XOR Bit Manipulation.
+
+// XOR Bit Manipulation :- In this we take the XOR of given array and the first n natural number.
+// Time Complexity = O(n)
+// Space complexity =O(1)
+// No Overflow.
+// Hope you find this useful.
+}
