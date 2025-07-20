@@ -65,78 +65,78 @@ using namespace std;
 // Input: nums = [0]
 // Output: [0]
 
-int main()
-{
-    // Brute force approach
-    // vector<int> nums = {0,1,2};
-    // for (int i = 0; i < nums.size(); i++)
-    // {
-    //     int smallest_no_index = i;
-    //    for (int j = i+1; j < nums.size(); j++)
-    //    {
-    //         if(nums[smallest_no_index] > nums[j]){
-    //             smallest_no_index = j;
-    //         }
-    //    }
-    //    if(smallest_no_index != i){
-    //     swap(nums[i], nums[smallest_no_index]);
-    //    }
+// int main()
+// {
+// Brute force approach
+// vector<int> nums = {0,1,2};
+// for (int i = 0; i < nums.size(); i++)
+// {
+//     int smallest_no_index = i;
+//    for (int j = i+1; j < nums.size(); j++)
+//    {
+//         if(nums[smallest_no_index] > nums[j]){
+//             smallest_no_index = j;
+//         }
+//    }
+//    if(smallest_no_index != i){
+//     swap(nums[i], nums[smallest_no_index]);
+//    }
 
-    // }
-    // time - O(n) but taking 2pass and we have to done it in single pass
-    // vector<int> nums = {2, 0, 2, 1, 1, 0, 0, 1, 1, 2};
+// }
+// time - O(n) but taking 2pass and we have to done it in single pass
+// vector<int> nums = {2, 0, 2, 1, 1, 0, 0, 1, 1, 2};
 
-    // int count_0 = 0, count_1 = 0, count_2 = 0;
+// int count_0 = 0, count_1 = 0, count_2 = 0;
 
-    // for (int i = 0; i < nums.size(); i++)
-    // {
-    //     if (nums[i] == 0)
-    //     {
-    //         count_0++;
-    //     }
-    //     if (nums[i] == 1)
-    //     {
-    //         count_1++;
-    //     }
-    //     if (nums[i] == 2)
-    //     {
-    //         count_2++;
-    //     }
-    // }
+// for (int i = 0; i < nums.size(); i++)
+// {
+//     if (nums[i] == 0)
+//     {
+//         count_0++;
+//     }
+//     if (nums[i] == 1)
+//     {
+//         count_1++;
+//     }
+//     if (nums[i] == 2)
+//     {
+//         count_2++;
+//     }
+// }
 
-    // for (int i = 0; i < count_0; i++)
-    // {
-    //     nums[i] = 0;
-    // }
-    // for (int i = count_0; i < count_0 + count_1; i++)
-    // {
-    //     nums[i] = 1;
-    // }
-    // for (int i = count_0 + count_1; i < nums.size(); i++)
-    // {
-    //     nums[i] = 2;
-    // }
+// for (int i = 0; i < count_0; i++)
+// {
+//     nums[i] = 0;
+// }
+// for (int i = count_0; i < count_0 + count_1; i++)
+// {
+//     nums[i] = 1;
+// }
+// for (int i = count_0 + count_1; i < nums.size(); i++)
+// {
+//     nums[i] = 2;
+// }
 
-    // Most optimal solution - Dutch National Flag algorithm
-    vector<int> nums = {2, 0, 2, 1, 1, 0, 0, 1, 1, 2};
-    int mid = 0, high = nums.size()-1, low = 0;
-    while(mid <= high)
-    {
-        if(nums[mid] == 0){
-            swap(nums[mid], nums[low]);
-            mid++, low++;
-        }
-        else if(nums[mid] == 1){
-            mid ++;
-        }
-        else{
-            swap(nums[mid], nums[high]);
-            high--;
-        }
-    }
-    
-    for (auto it : nums)
-    {
-        cout << it << " ";
-    }
-}
+// Most optimal solution - Dutch National Flag algorithm
+//     vector<int> nums = {2, 0, 2, 1, 1, 0, 0, 1, 1, 2};
+//     int mid = 0, high = nums.size()-1, low = 0;
+//     while(mid <= high)
+//     {
+//         if(nums[mid] == 0){
+//             swap(nums[mid], nums[low]);
+//             mid++, low++;
+//         }
+//         else if(nums[mid] == 1){
+//             mid ++;
+//         }
+//         else{
+//             swap(nums[mid], nums[high]);
+//             high--;
+//         }
+//     }
+
+//     for (auto it : nums)
+//     {
+//         cout << it << " ";
+//     }
+// }
