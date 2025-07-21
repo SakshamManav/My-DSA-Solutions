@@ -85,61 +85,38 @@ using namespace std;
 //     }
 
 // };
-// class Solution
-// {
+
+
+// Unable to do this ques
+// class Solution {
 // public:
-//     int countTrapezoids(vector<vector<int>> &points)
-//     {
+//     int countTrapezoids(vector<vector<int>>& points) {
 //         int count = 0;
 //         int xaxis = 0;
-//         for (int i = 0; i < points.size(); i++)
-//         {
-//             for (int j = 0; j < points[i].size(); j++)
+//         for(int i=0; i<points.size(); i++){ 
+//             for (int j = 0; j < points[j].size(); j++)
 //             {
-//                 for (int k = 1; i < points.size(); i++)
-//                 {
-//                     if (points[i][1] == points[k][1])
-//                     {
-//                         xaxis++;
+//                 for(int k = 1; i<points.size(); i++){
+//                     if(points[i][1] == points[k][1]){
+//                         xaxis++; 
 //                         break;
 //                     }
 //                 }
 //             }
 //         }
         
-//             return xaxis;
-        
+//         if(xaxis > 3){
+//              return xaxis -3;
+//         }
+//         return 0;
+       
 //     }
 // };
-class Solution {
-public:
-    int countTrapezoids(vector<vector<int>>& points) {
-        int count = 0;
-        int xaxis = 0;
-        for(int i=0; i<points.size(); i++){ 
-            for (int j = 0; j < points[j].size(); j++)
-            {
-                for(int k = 1; i<points.size(); i++){
-                    if(points[i][1] == points[k][1]){
-                        xaxis++; 
-                        break;
-                    }
-                }
-            }
-        }
-        
-        if(xaxis > 3){
-             return xaxis -3;
-        }
-        return 0;
-       
-    }
-};
-int main()
-{
-    Solution sol;
-    // vector<vector<int>> nums = {{1,0},{2,0},{3,0},{2,2},{3,2}};
-    vector<vector<int>> nums = {{-99,-79}, {30, -60}, {-70, -60}, {61, 50}};
-    int ans = sol.countTrapezoids(nums);
-    cout << ans;
-}
+// int main()
+// {
+//     Solution sol;
+//     // vector<vector<int>> nums = {{1,0},{2,0},{3,0},{2,2},{3,2}};
+//     vector<vector<int>> nums = {{-99,-79}, {30, -60}, {-70, -60}, {61, 50}};
+//     int ans = sol.countTrapezoids(nums);
+//     cout << ans;
+// }

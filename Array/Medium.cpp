@@ -55,7 +55,7 @@ using namespace std;
 //     }
 // }
 
-// Sort an array of 0s, 1s and 2s without using inbult sort function
+// 02) Sort an array of 0s, 1s and 2s without using inbult sort function
 // Input: nums = [2,0,2,1,1,0]
 // Output: [0,0,1,1,2,2]
 
@@ -140,3 +140,141 @@ using namespace std;
 //         cout << it << " ";
 //     }
 // }
+
+// 03) Find the Majority Element that occurs more than N/2 times
+// Example :
+// Input Format: N = 3, nums[] = {3,2,3}
+// Result: 3
+// Explanation: When we just count the occurrences of each number and compare with half of the size of the array, you will get 3 for the above solution.
+
+//  Time Complexity:
+// O(n) for iterating over nums
+
+// O(n log n) for inserting into a map<int, int> (because map is a Red-Black Tree)
+// ➡️ So total time complexity = O(n log n)
+
+// ✅ Space Complexity:
+// You're using a map<int, int> mpp to store the frequency of elements.
+// In the worst case, all elements are distinct.
+// So:
+// Space complexity = O(n) (for the map)
+
+// class Solution{
+//     public:
+//     int majority_elem(vector<int>nums){
+//         map<int, int> mpp;
+//         for (int i = 0; i < nums.size(); i++)
+//         {
+//             mpp[nums[i]]++;
+//         }
+//         for(auto it : mpp){
+//             if(it.second > (nums.size()/2)){
+//                 return it.first;
+//             }
+//         }
+//         return -1;
+
+//     }
+// };
+
+// optimal solution time - On, space - O1
+// class Solution
+// {
+// public:
+//     int majorityElement(vector<int> nums)
+//     {
+//         int count = 0;
+//         int elem = 0;
+//         for (int i = 0; i < nums.size(); i++)
+//         {
+//             if (count == 0)
+//             {
+//                 elem = nums[i];
+//                 count++;
+//             }
+//             else if (nums[i] == elem)
+//             {
+//                 count++;
+//             }
+//             else
+//             {
+//                 count--;
+//             }
+//         }
+//         cout<<elem;
+//         int newcount = 0;
+//         for (int i = 0; i < nums.size(); i++)
+//         {
+//             if (nums[i] == elem)
+//             {
+//                 newcount++;
+//             }
+//         }
+//         if (newcount > (nums.size() / 2))
+//         {
+//             return elem;
+//         }
+//         return -1;
+//     }
+// };
+
+// int main()
+// {
+//     vector<int> nums = {1, 1, 3, 4, 4, 4, 4, 4, 4, 2, 1};
+//     Solution sol;
+//     int ans = sol.majorityElement(nums);
+//     cout << ans;
+// }
+
+// 04) Maximum Subarray Sum in an Array
+// Example :
+
+// Input: arr = [-2,1,-3,4,-1,2,1,-5,4] 
+
+// Output: 6 
+
+// Explanation: [4,-1,2,1] has the largest sum = 6. 
+
+// Optimal SOlution - Kadane's Algorithm
+// in this we are also finding the sub_array that sums up to the maximum sum
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+        int sum = 0;
+        int max_sum = INT_MIN;
+        int start_idx = 0;
+        int end_idx = nums.size()-1;
+        int start = 0;
+        int ans_start = 0;
+        int ans_end = 0;
+        for(int i = 0; i<nums.size(); i++){
+            if(sum == 0){
+                start = i;
+            }
+
+            sum += nums[i];
+            if(sum > max_sum){
+                max_sum = sum;
+                ans_start = start;
+                ans_end = i;
+            }
+            max_sum = max(sum, max_sum);
+
+            
+            if(sum < 0){
+                sum = 0;
+            }
+        }
+        for(int i=ans_start; i <= ans_end; i++){
+            cout<<nums[i]<<" ";
+        }
+        return max_sum;
+    }
+};
+
+int main(){
+    vector<int> nums = {5,4,-1,7,8};
+    Solution sol;
+    int ans = sol.maxSubArray(nums);
+    cout<<ans;
+}
