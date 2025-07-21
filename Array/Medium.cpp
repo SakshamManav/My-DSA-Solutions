@@ -177,7 +177,7 @@ using namespace std;
 //     }
 // };
 
-// optimal solution time - On, space - O1
+// Optimal solution time - Moore’s Voting Algorithm:  O(n), space - O(1)
 // class Solution
 // {
 // public:
