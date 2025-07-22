@@ -306,3 +306,76 @@ using namespace std;
 //     int ans = sol.maxProfit(nums);
 //     cout<<ans;
 // }
+
+// 07) Rearrange Array Elements by Sign
+// Example :
+
+// Input:
+// arr[] = {1,2,-4,-5}, N = 4
+// Output:
+// 1 -4 2 -5
+
+// Explanation: 
+
+// Positive elements = 1,2
+// Negative elements = -4,-5
+// To maintain relative ordering, 1 must occur before 2, and -4 must occur before -5.
+// vector<int> alternateNumbers(vector<int>&a) {
+//     int count1 = 0;
+//     int count2 = 0;
+//     vector<int> b(a.size()/2);
+//     vector<int> c(a.size()/2);
+//     for(int i = 0; i<a.size(); i++){
+//         if(a[i]<0){
+//             b[count1] = a[i];
+//             count1++;
+//         }
+//         else{
+//             c[count2] = a[i];
+//             count2++;
+//         }
+//     }
+//     count1 = 0, count2 = 0;
+
+//     for (int i = 0; i < a.size(); i++)
+//     {
+//         if(i%2==0){
+//             a[i] = c[count2];
+//             count2++;
+//         }
+//         else{
+//             a[i] = b[count1];
+//             count1++;
+//         }
+//     }
+    
+//     return a;
+// }
+
+// When order does not matter
+vector<int> alternateNumbers(vector<int>&nums) {
+    int pos_idx = 0;
+    int neg_idx = 1;
+
+    for (int i = 0; i < nums.size(); i++)
+    {
+        if(nums[i] >= 0 && pos_idx < nums.size()){
+            swap(nums[i], nums[pos_idx]);
+            pos_idx+=2;
+        }
+        else if(nums[i]<0 && neg_idx < nums.size()){
+            swap(nums[i], nums[neg_idx]);
+            neg_idx+=2;
+        }
+    }
+    return nums;
+    
+}
+int main(){
+    vector<int> a = {1,2,-4,-5,3,-6};
+    vector<int>ans;
+    ans = alternateNumbers(a);
+    for(auto it:ans){
+        cout<<it;
+    }
+}
