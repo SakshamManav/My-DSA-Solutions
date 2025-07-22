@@ -236,45 +236,73 @@ using namespace std;
 // Explanation: [4,-1,2,1] has the largest sum = 6. 
 
 // Optimal SOlution - Kadane's Algorithm
-// in this we are also finding the sub_array that sums up to the maximum sum
-class Solution {
-public:
-    int maxSubArray(vector<int>& nums) {
-        int sum = 0;
-        int max_sum = INT_MIN;
-        int start_idx = 0;
-        int end_idx = nums.size()-1;
-        int start = 0;
-        int ans_start = 0;
-        int ans_end = 0;
-        for(int i = 0; i<nums.size(); i++){
-            if(sum == 0){
-                start = i;
-            }
+// in this we are also finding the sub_array that sums up to the maximum sum but in ideal question we just have asked to find the max sum.
+// class Solution {
+// public:
+//     int maxSubArray(vector<int>& nums) {
+//         int sum = 0;
+//         int max_sum = INT_MIN;
+//         int start = 0;
+//         int ans_start = 0;
+//         int ans_end = 0;
+//         for(int i = 0; i<nums.size(); i++){
+//             if(sum == 0){
+//                 start = i;
+//             }
 
-            sum += nums[i];
-            if(sum > max_sum){
-                max_sum = sum;
-                ans_start = start;
-                ans_end = i;
-            }
-            max_sum = max(sum, max_sum);
+//             sum += nums[i];
+//             if(sum > max_sum){
+//                 max_sum = sum;
+//                 ans_start = start;
+//                 ans_end = i;
+//             }            
+//             if(sum < 0){
+//                 sum = 0;
+//             }
+//         }
+//         for(int i=ans_start; i <= ans_end; i++){
+//             cout<<nums[i]<<" ";
+//         }
+//         return max_sum;
+//     }
+// };
 
-            
-            if(sum < 0){
-                sum = 0;
-            }
-        }
-        for(int i=ans_start; i <= ans_end; i++){
-            cout<<nums[i]<<" ";
-        }
-        return max_sum;
-    }
-};
+// int main(){
+//     vector<int> nums = {5,4,-1,7,8};
+//     Solution sol;
+//     int ans = sol.maxSubArray(nums);
+//     cout<<ans;
+// }
 
-int main(){
-    vector<int> nums = {5,4,-1,7,8};
-    Solution sol;
-    int ans = sol.maxSubArray(nums);
-    cout<<ans;
-}
+//  06) Best time to buy and sell stock
+// Example :
+// Input: prices = [7,1,5,3,6,4]
+// Output: 5
+// Explanation: Buy on day 2 (price = 1) and 
+// sell on day 5 (price = 6), profit = 6-1 = 5.
+
+// Note: That buying on day 2 and selling on day 1 
+// is not allowed because you must buy before 
+// you sell.
+
+// Most optimal Solution
+// class Solution{
+//     public:
+//         int maxProfit(vector<int>& prices) {
+//         int max_profit = 0;
+//         int best_buy = prices[0];
+
+//         for (int i = 0; i < prices.size(); i++)
+//         {
+//             max_profit = max(max_profit, prices[i] -best_buy);
+//             best_buy = min(best_buy, prices[i]);
+//         }
+//         return max_profit;
+//     }
+// };
+// int main(){
+//     vector<int>  nums = {2,4,1,20,50};
+//     Solution sol;
+//     int ans = sol.maxProfit(nums);
+//     cout<<ans;
+// }
