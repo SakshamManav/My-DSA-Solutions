@@ -229,11 +229,11 @@ using namespace std;
 // 04) Maximum Subarray Sum in an Array
 // Example :
 
-// Input: arr = [-2,1,-3,4,-1,2,1,-5,4] 
+// Input: arr = [-2,1,-3,4,-1,2,1,-5,4]
 
-// Output: 6 
+// Output: 6
 
-// Explanation: [4,-1,2,1] has the largest sum = 6. 
+// Explanation: [4,-1,2,1] has the largest sum = 6.
 
 // Optimal SOlution - Kadane's Algorithm
 // in this we are also finding the sub_array that sums up to the maximum sum but in ideal question we just have asked to find the max sum.
@@ -255,7 +255,7 @@ using namespace std;
 //                 max_sum = sum;
 //                 ans_start = start;
 //                 ans_end = i;
-//             }            
+//             }
 //             if(sum < 0){
 //                 sum = 0;
 //             }
@@ -278,11 +278,11 @@ using namespace std;
 // Example :
 // Input: prices = [7,1,5,3,6,4]
 // Output: 5
-// Explanation: Buy on day 2 (price = 1) and 
+// Explanation: Buy on day 2 (price = 1) and
 // sell on day 5 (price = 6), profit = 6-1 = 5.
 
-// Note: That buying on day 2 and selling on day 1 
-// is not allowed because you must buy before 
+// Note: That buying on day 2 and selling on day 1
+// is not allowed because you must buy before
 // you sell.
 
 // Most optimal Solution
@@ -315,7 +315,7 @@ using namespace std;
 // Output:
 // 1 -4 2 -5
 
-// Explanation: 
+// Explanation:
 
 // Positive elements = 1,2
 // Negative elements = -4,-5
@@ -348,34 +348,215 @@ using namespace std;
 //             count1++;
 //         }
 //     }
-    
+
 //     return a;
 // }
 
 // When order does not matter
-vector<int> alternateNumbers(vector<int>&nums) {
-    int pos_idx = 0;
-    int neg_idx = 1;
+// vector<int> alternateNumbers(vector<int>&nums) {
+//     int pos_idx = 0;
+//     int neg_idx = 1;
 
-    for (int i = 0; i < nums.size(); i++)
+//     for (int i = 0; i < nums.size(); i++)
+//     {
+//         if(nums[i] >= 0 && pos_idx < nums.size()){
+//             swap(nums[i], nums[pos_idx]);
+//             pos_idx+=2;
+//         }
+//         else if(nums[i]<0 && neg_idx < nums.size()){
+//             swap(nums[i], nums[neg_idx]);
+//             neg_idx+=2;
+//         }
+//     }
+//     return nums;
+
+// }
+// int main(){
+//     vector<int> a = {1,2,-4,-5,3,-6};
+//     vector<int>ans;
+//     ans = alternateNumbers(a);
+//     for(auto it:ans){
+//         cout<<it;
+//     }
+// }
+
+// // 08) Next permutation   ---- >>> did not complete
+// // Example :
+
+// // Input format: Arr[] = {1,3,2}
+// // Output: Arr[] = {2,1,3}
+// // Explanation: All permutations of {1,2,3} are {{1,2,3} , {1,3,2}, {2,13} , {2,3,1} , {3,1,2} , {3,2,1}}. So, the next permutation just after {1,3,2} is {2,1,3}.
+
+// class Solution {
+// public:
+//     void nextPermutation(vector<int>& nums) {
+
+//     }
+// };
+
+// int main(){
+//     vector<int> nums = {1,3,2};
+//     Solution sol;
+//     sol.nextPermutation(nums);
+// }
+
+// 09) Leader in Array
+
+// Example 1:
+// Input:
+//  arr = [4, 7, 1, 0]
+// Output:
+//  7 1 0
+// Explanation:
+//  Rightmost element is always a leader. 7 and 1 are greater than the elements in their right side
+
+// int main(){
+//     vector<int> nums = {61, 61, 17};
+//     int largest = nums[nums.size()-1];
+//     vector<int> ans;
+//     ans.push_back(largest);
+//     for (int i = nums.size()-2; i >= 0; i--)
+//     {
+//         if(nums[i] >= largest){
+//             largest = nums[i];
+//             ans.push_back(largest);
+//         }
+//     }
+//     reverse(ans.begin(), ans.end());
+//     for(auto it: ans){
+//         cout<<it<<" ";
+//     }
+// }
+
+// 10) Longest Consecutive Sequence in an Array
+// Example 1:
+
+// Input: [100, 200, 1, 3, 2, 4]
+
+// Output: 4
+
+// Explanation: The longest consecutive subsequence is 1, 2, 3, and 4.
+
+// int main(){
+//     vector<int> nums = {1,0,1,2};
+//     int count = 0;
+//     int curr_count = 0;
+//     sort(nums.begin(), nums.end());
+//     for (int i = 1; i < nums.size(); i++)
+//     {
+//         if(nums[i] ==  nums[i-1]+1){
+//             curr_count++;
+//         }
+//         else if(nums[i] == nums[i-1]){
+
+//         } else{
+//             curr_count = 0;
+//         }
+//         count = max(count, curr_count);
+//     }
+//     cout<<"Count  = "<<count+1;
+// }
+
+//  taking same or more time as prev
+// int main()
+// {
+//     vector<int> nums = {9,1,4,7,3,-1,0,5,8,-1,6};
+//     set<int> st;
+//     for (int i = 0; i < nums.size(); i++)
+//     {
+//         st.insert(nums[i]);
+//     }
+//     int count = 0;
+//     int curr_count = 0;
+//     for(auto it:st){
+//         cout<<it<<" ";
+//     }
+//     cout<<endl;
+//     for (auto it = st.begin(); it != st.end(); ++it)
+//     {
+//         if(next(it) != st.end() && *next(it) == *it + 1){
+//             curr_count++;
+//         }
+//         else{
+//             curr_count = 0;
+//         }
+//         count = max(curr_count, count);
+//     }
+//    cout<<count+1;
+// // }
+// --->>> Did not understand it at all
+// int main(){
+//     vector<int> nums = {9,1,4,7,3,-1,0,5,8,-1,6};
+//     if(nums.size()<1){
+//         cout<<0;
+//     }
+//     int count = 0;
+//     unordered_set<int> st;
+//     for(int i = 0; i<nums.size(); i++){
+//         st.insert(nums[i]);
+//     }
+//     for(int it:st){
+//         if(st.find(it-1) == st.end()){
+//             int cnt = 1;
+//             int x =it;
+//             while (st.find(x+1) != st.end())
+//             {
+//                 x =  x+1;
+//                 cnt++;
+//             }
+//         count = max(count, cnt);
+//         }
+//     }
+// }
+
+int main()
+{
+    vector<vector<int>> mat = {{1,1,1}, {1,0,1}, {1,1,1}};
+    vector<pair<int, int>> p;
+
+    for (int i = 0; i < mat.size(); i++)
     {
-        if(nums[i] >= 0 && pos_idx < nums.size()){
-            swap(nums[i], nums[pos_idx]);
-            pos_idx+=2;
+        for (int j = 0; j < mat[i].size(); j++)
+        {
+            cout << mat[i][j] << " ";
+            if (mat[i][j] == 0)
+            {
+                p.push_back({i, j});
+            }
         }
-        else if(nums[i]<0 && neg_idx < nums.size()){
-            swap(nums[i], nums[neg_idx]);
-            neg_idx+=2;
+        cout << endl;
+    }
+    for (auto it : p)
+    {
+        cout << it.first << " " << it.second << endl;
+        for (int i = 0; i < mat.size(); i++)
+        {
+            for (int j = 0; j < mat[i].size(); j++)
+            {
+                if (i == it.first && j == it.second)
+                {
+                    int k =0;
+                    while (k<mat[i].size())
+                    {
+                        mat[i][k] = 0;
+                        k++;
+                    }
+                    k=0;
+                    while (k<mat.size())
+                    {
+                        mat[k][j] = 0;
+                        k++;
+                    }
+                }
+            }
         }
     }
-    return nums;
-    
-}
-int main(){
-    vector<int> a = {1,2,-4,-5,3,-6};
-    vector<int>ans;
-    ans = alternateNumbers(a);
-    for(auto it:ans){
-        cout<<it;
+    for (int i = 0; i < mat.size(); i++)
+    {
+        for (int j = 0; j < mat[i].size(); j++)
+        {
+            cout << mat[i][j] << " ";
+        }
+        cout << endl;
     }
 }
