@@ -509,54 +509,157 @@ using namespace std;
 //     }
 // }
 
-int main()
-{
-    vector<vector<int>> mat = {{1,1,1}, {1,0,1}, {1,1,1}};
-    vector<pair<int, int>> p;
+// 11) Set Matrix Zero
 
+// Examples 1:
+// Input: matrix=[[1,1,1],[1,0,1],[1,1,1]]
+// Output: [[1,0,1],[0,0,0],[1,0,1]]
+// Explanation: Since matrix[2][2]=0.Therfore the 2nd column and 2nd row wil be set to 0.
+
+// this is so bad solution done by me On^4
+// int main()
+// {
+//     vector<vector<int>> mat = {{1,1,1}, {1,0,1}, {1,1,1}};
+//     vector<pair<int, int>> p;
+
+//     for (int i = 0; i < mat.size(); i++)
+//     {
+//         for (int j = 0; j < mat[i].size(); j++)
+//         {
+//             cout << mat[i][j] << " ";
+//             if (mat[i][j] == 0)
+//             {
+//                 p.push_back({i, j});
+//             }
+//         }
+//         cout << endl;
+//     }
+//     for (auto it : p)
+//     {
+//         cout << it.first << " " << it.second << endl;
+//         for (int i = 0; i < mat.size(); i++)
+//         {
+//             for (int j = 0; j < mat[i].size(); j++)
+//             {
+//                 if (i == it.first && j == it.second)
+//                 {
+//                     int k =0;
+//                     while (k<mat[i].size())
+//                     {
+//                         mat[i][k] = 0;
+//                         k++;
+//                     }
+//                     k=0;
+//                     while (k<mat.size())
+//                     {
+//                         mat[k][j] = 0;
+//                         k++;
+//                     }
+//                 }
+//             }
+//         }
+//     }
+//     for (int i = 0; i < mat.size(); i++)
+//     {
+//         for (int j = 0; j < mat[i].size(); j++)
+//         {
+//             cout << mat[i][j] << " ";
+//         }
+//         cout << endl;
+//     }
+// }
+
+// better than before On^3
+// int main()
+// {
+//     vector<vector<int>> mat = {{1, 1, 1}, {1, 0, 1}, {1, 1, 1}};
+//     for (int i = 0; i < mat.size(); i++)
+//     {
+//         for (int j = 0; j < mat[i].size(); j++)
+//         {
+            
+//             if (mat[i][j] == 0)
+//             {
+//                 int k = 0;
+//                 while (k < mat[i].size())
+//                 {
+//                     mat[i][k] = -1;
+//                     k++;
+//                 }
+//                 k = 0;
+//                 while (k < mat.size())
+//                 {
+//                     mat[k][j] = -1;
+//                     k++;
+//                 }
+//             }
+//         }
+//     }
+
+//     for (int i = 0; i < mat.size(); i++)
+//     {
+//         for (int j = 0; j < mat[i].size(); j++)
+//         {
+//             if(mat[i][j] == -1){
+//                 mat[i][j] = 0;
+//             }
+//             cout << mat[i][j] << " ";
+//         }
+//         cout << endl;
+//     }
+// }
+
+// better than before
+
+int main(){
+     vector<vector<int>> mat = {{1, 1, 1}, {1, 0, 1}, {1, 1, 1}};
+     vector<int> col(mat[0].size());
+     vector<int> row(mat.size());
     for (int i = 0; i < mat.size(); i++)
     {
         for (int j = 0; j < mat[i].size(); j++)
         {
-            cout << mat[i][j] << " ";
+            
             if (mat[i][j] == 0)
             {
-                p.push_back({i, j});
-            }
-        }
-        cout << endl;
-    }
-    for (auto it : p)
-    {
-        cout << it.first << " " << it.second << endl;
-        for (int i = 0; i < mat.size(); i++)
-        {
-            for (int j = 0; j < mat[i].size(); j++)
-            {
-                if (i == it.first && j == it.second)
-                {
-                    int k =0;
-                    while (k<mat[i].size())
-                    {
-                        mat[i][k] = 0;
-                        k++;
-                    }
-                    k=0;
-                    while (k<mat.size())
-                    {
-                        mat[k][j] = 0;
-                        k++;
-                    }
-                }
+               row[i] = 1;
+               col[j] = 1;
             }
         }
     }
+
+    
+    
     for (int i = 0; i < mat.size(); i++)
     {
         for (int j = 0; j < mat[i].size(); j++)
         {
+            if(col[j] == 1 || row[i] ==1){
+                mat[i][j] = 0;
+            }
             cout << mat[i][j] << " ";
         }
         cout << endl;
     }
+    
 }
+
+
+
+// Rotate matrix by 90 degree
+// int main(){
+
+//     vector<vector<int>> matrix = {{1,2,3},{4,5,6},{7,8,9}};
+//     int size = matrix.size();
+//     int ans[size][size] = {0};
+
+//     for (int i = 0; i < matrix.size(); i++)
+//     {
+//        for (int j = 0; j < matrix.size(); j++)
+//        {
+
+//        }
+
+//     }
+
+// }
