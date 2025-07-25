@@ -577,7 +577,7 @@ using namespace std;
 //     {
 //         for (int j = 0; j < mat[i].size(); j++)
 //         {
-            
+
 //             if (mat[i][j] == 0)
 //             {
 //                 int k = 0;
@@ -611,55 +611,224 @@ using namespace std;
 
 // better than before
 
-int main(){
-     vector<vector<int>> mat = {{1, 1, 1}, {1, 0, 1}, {1, 1, 1}};
-     vector<int> col(mat[0].size());
-     vector<int> row(mat.size());
-    for (int i = 0; i < mat.size(); i++)
-    {
-        for (int j = 0; j < mat[i].size(); j++)
-        {
-            
-            if (mat[i][j] == 0)
-            {
-               row[i] = 1;
-               col[j] = 1;
-            }
-        }
-    }
+// int main(){
+//      vector<vector<int>> mat = {{1, 1, 1}, {1, 0, 1}, {1, 1, 1}};
+//      vector<int> col(mat[0].size());
+//      vector<int> row(mat.size());
+//     for (int i = 0; i < mat.size(); i++)
+//     {
+//         for (int j = 0; j < mat[i].size(); j++)
+//         {
 
-    
-    
-    for (int i = 0; i < mat.size(); i++)
-    {
-        for (int j = 0; j < mat[i].size(); j++)
-        {
-            if(col[j] == 1 || row[i] ==1){
-                mat[i][j] = 0;
-            }
-            cout << mat[i][j] << " ";
-        }
-        cout << endl;
-    }
-    
-}
+//             if (mat[i][j] == 0)
+//             {
+//                row[i] = 1;
+//                col[j] = 1;
+//             }
+//         }
+//     }
+//     for (int i = 0; i < mat.size(); i++)
+//     {
+//         for (int j = 0; j < mat[i].size(); j++)
+//         {
+//             if(col[j] == 1 || row[i] ==1){
+//                 mat[i][j] = 0;
+//             }
+//             cout << mat[i][j] << " ";
+//         }
+//         cout << endl;
+//     }
 
+// }
 
+// Best approach
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// vector<vector<int>> zeroMatrix(vector<vector<int>> &matrix, int n, int m) {
+
+//     // int row[n] = {0}; --> matrix[..][0]
+//     // int col[m] = {0}; --> matrix[0][..]
+
+//     int col0 = 1;
+//     // step 1: Traverse the matrix and
+//     // mark 1st row & col accordingly:
+//     for (int i = 0; i < n; i++) {
+//         for (int j = 0; j < m; j++) {
+//             if (matrix[i][j] == 0) {
+//                 // mark i-th row:
+//                 matrix[i][0] = 0;
+
+//                 // mark j-th column:
+//                 if (j != 0)
+//                     matrix[0][j] = 0;
+//                 else
+//                     col0 = 0;
+//             }
+//         }
+//     }
+
+//     // Step 2: Mark with 0 from (1,1) to (n-1, m-1):
+//     for (int i = 1; i < n; i++) {
+//         for (int j = 1; j < m; j++) {
+//             if (matrix[i][j] != 0) {
+//                 // check for col & row:
+//                 if (matrix[i][0] == 0 || matrix[0][j] == 0) {
+//                     matrix[i][j] = 0;
+//                 }
+//             }
+//         }
+//     }
+
+//     //step 3: Finally mark the 1st col & then 1st row:
+//     if (matrix[0][0] == 0) {
+//         for (int j = 0; j < m; j++) {
+//             matrix[0][j] = 0;
+//         }
+//     }
+//     if (col0 == 0) {
+//         for (int i = 0; i < n; i++) {
+//             matrix[i][0] = 0;
+//         }
+//     }
+
+//     return matrix;
+// }
+
+// int main()
+// {
+//     vector<vector<int>> matrix = {{1, 1, 1}, {1, 0, 1}, {1, 1, 1}};
+//     int n = matrix.size();
+//     int m = matrix[0].size();
+//     vector<vector<int>> ans = zeroMatrix(matrix, n, m);
+
+//     cout << "The Final matrix is: n";
+//     for (auto it : ans) {
+//         for (auto ele : it) {
+//             cout << ele << " ";
+//         }
+//         cout << "n";
+//     }
+//     return 0;
+// }
 
 // Rotate matrix by 90 degree
+// Brute force approach
 // int main(){
 
 //     vector<vector<int>> matrix = {{1,2,3},{4,5,6},{7,8,9}};
-//     int size = matrix.size();
-//     int ans[size][size] = {0};
+//     vector<vector<int>> ans_mat = matrix;
 
-//     for (int i = 0; i < matrix.size(); i++)
+//     for (int i =0; i < matrix.size(); i++)
 //     {
-//        for (int j = 0; j < matrix.size(); j++)
+//        for (int j = matrix[i].size()-1; j >=0; j--)
 //        {
-
+//             cout<<ans_mat[j][i]<<" ";
 //        }
+//        cout<<endl;
 
 //     }
 
+// }
+// better approach with time of O(n²) and space of	O(1)
+// int main(){
+//     vector<vector<int>> matrix = {{1,2,3},{4,5,6},{7,8,9}};
+//     for (int i = 0; i < matrix.size(); i++)
+//     {
+//         for (int j = i+1; j < matrix.size(); j++)
+//         {
+//            if(i == j){
+
+//            }
+//            else{
+//             swap(matrix[i][j], matrix[j][i]);
+//            }
+
+//         }
+
+//     }
+
+//     for (int i = 0; i < matrix.size(); i++)
+//     {
+//         reverse(matrix[i].begin(), matrix[i].end());
+//     }
+//     for (int i = 0; i < matrix.size(); i++)
+//     {
+//         for (int j = 0; j < matrix.size(); j++)
+//         {
+//             cout<<matrix[i][j]<<" ";
+//         }
+//         cout<<endl;
+//     }
+// }
+
+// Spiral Traversal of Matrix
+int main()
+{
+    vector<vector<int>> matrix = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+   vector<int> ans;
+        int left = 0, right = matrix[0].size() - 1;
+        int top = 0, bottom = matrix.size() - 1;
+
+        while (left <= right && top <= bottom) {
+            // Traverse top row
+            for (int i = left; i <= right; i++)
+                ans.push_back(matrix[top][i]);
+            top++;
+
+            // Traverse right column
+            for (int i = top; i <= bottom; i++)
+                ans.push_back(matrix[i][right]);
+            right--;
+
+            // Traverse bottom row
+            if (top <= bottom) {
+                for (int i = right; i >= left; i--)
+                    ans.push_back(matrix[bottom][i]);
+                bottom--;                                                                   
+
+            }
+
+            // Traverse left column
+            if (left <= right) {
+                for (int i = bottom; i >= top; i--)
+                    ans.push_back(matrix[i][left]);
+                left++;
+            }
+        }
+    
+    for (auto it : ans)
+    {
+        cout << it << " ";
+    }
+}
+
+// Example 1:
+// Input Format: N = 3, k = 5, array[] = {2,3,5}
+// Result: 2
+// Explanation: The longest subarray with sum 5 is {2, 3}. And its length is 2.
+
+// Example 2:
+// Input Format: N = 5, k = 10, array[] = {2,3,5,1,9}
+// Result: 3
+// Explanation: The longest subarray with sum 10 is {2, 3, 5}. And its length is 3.
+
+// int main()
+// {
+//     vector<int> nums = {1, 2, 3};
+//     int act_count = 0;
+//     int k = 3;
+//     for (int i = 0; i < nums.size(); i++)
+//     {
+//         int sum = 0;
+//         int count = 0;
+//         for (int j = i; j < nums.size(); j++)
+//         {
+//           sum += nums[j];
+//           if(sum == k){
+//             act_count = max(act_count, j-i+1);
+//           }
+//         }
+//     }
+//     cout<<act_count;
 // }
