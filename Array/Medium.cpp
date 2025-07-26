@@ -763,72 +763,71 @@ using namespace std;
 // }
 
 // Spiral Traversal of Matrix
-int main()
-{
-    vector<vector<int>> matrix = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
-   vector<int> ans;
-        int left = 0, right = matrix[0].size() - 1;
-        int top = 0, bottom = matrix.size() - 1;
+// int main()
+// {
+//     vector<vector<int>> matrix = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+//    vector<int> ans;
+//         int left = 0, right = matrix[0].size() - 1;
+//         int top = 0, bottom = matrix.size() - 1;
 
-        while (left <= right && top <= bottom) {
-            // Traverse top row
-            for (int i = left; i <= right; i++)
-                ans.push_back(matrix[top][i]);
-            top++;
+//         while (left <= right && top <= bottom) {
+//             // Traverse top row
+//             for (int i = left; i <= right; i++)
+//                 ans.push_back(matrix[top][i]);
+//             top++;
 
-            // Traverse right column
-            for (int i = top; i <= bottom; i++)
-                ans.push_back(matrix[i][right]);
-            right--;
+//             // Traverse right column
+//             for (int i = top; i <= bottom; i++)
+//                 ans.push_back(matrix[i][right]);
+//             right--;
 
-            // Traverse bottom row
-            if (top <= bottom) {
-                for (int i = right; i >= left; i--)
-                    ans.push_back(matrix[bottom][i]);
-                bottom--;                                                                   
+//             // Traverse bottom row
+//             if (top <= bottom) {
+//                 for (int i = right; i >= left; i--)
+//                     ans.push_back(matrix[bottom][i]);
+//                 bottom--;
 
-            }
+//             }
 
-            // Traverse left column
-            if (left <= right) {
-                for (int i = bottom; i >= top; i--)
-                    ans.push_back(matrix[i][left]);
-                left++;
-            }
-        }
-    
-    for (auto it : ans)
-    {
-        cout << it << " ";
-    }
-}
+//             // Traverse left column
+//             if (left <= right) {
+//                 for (int i = bottom; i >= top; i--)
+//                     ans.push_back(matrix[i][left]);
+//                 left++;
+//             }
+//         }
 
-// Example 1:
-// Input Format: N = 3, k = 5, array[] = {2,3,5}
-// Result: 2
-// Explanation: The longest subarray with sum 5 is {2, 3}. And its length is 2.
+//     for (auto it : ans)
+//     {
+//         cout << it << " ";
+//     }
+// }
 
-// Example 2:
-// Input Format: N = 5, k = 10, array[] = {2,3,5,1,9}
-// Result: 3
-// Explanation: The longest subarray with sum 10 is {2, 3, 5}. And its length is 3.
+// Pascal's tree solution - Solved by me in one go
 
 // int main()
 // {
-//     vector<int> nums = {1, 2, 3};
-//     int act_count = 0;
-//     int k = 3;
-//     for (int i = 0; i < nums.size(); i++)
+//     int k = 7;
+//     vector<vector<int>> ans(k);
+//     for (int i = 0; i < k; i++)
 //     {
-//         int sum = 0;
-//         int count = 0;
-//         for (int j = i; j < nums.size(); j++)
+//         ans[i] = vector<int>(i + 1, 1); 
+//     }
+
+//     for (int i = 2; i < k; i++)
+//     {
+//         ans.push_back(vector<int>(i+1, 1));
+//         for (int j = 0; j < i-1; j++)
 //         {
-//           sum += nums[j];
-//           if(sum == k){
-//             act_count = max(act_count, j-i+1);
-//           }
+//             ans[i][j+1] = ans[i-1][j] + ans[i-1][j+1];
 //         }
 //     }
-//     cout<<act_count;
+//     for (auto it : ans)
+//     {
+//         for (auto val : it)
+//         {
+//             cout << val << " ";
+//         }
+//         cout << endl;
+//     }
 // }
