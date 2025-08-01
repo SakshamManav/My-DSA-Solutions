@@ -481,40 +481,272 @@ using namespace std;
 //     }
 // };
 
-
 // 07) Merge overlapping Subintervals
+
+// class Solution
+// {
+// public:
+//     vector<vector<int>> mergeOverlap(vector<vector<int>> &arr)
+//     {
+//         vector<vector<int>> ans;
+//         sort(arr.begin(), arr.end());
+//         for (int i = 0; i < arr.size(); i++)
+//         {
+//             if(ans.empty() || ans.back()[1] < arr[i][0]){
+//                 ans.push_back(arr[i]);
+//             }
+//             else{
+//                 ans.back()[1] = max(arr[i][1], ans.back()[1]);
+//             }
+//         }
+//         return ans;
+//     }
+// };
+
+// int main()
+// {
+//     Solution sol;
+//     vector<vector<int>> nums = {{1, 3},{2, 4},{6, 8},{9, 10}};
+//     vector<vector<int>> ans = sol.mergeOverlap(nums);
+//     for (auto it : ans)
+//     {
+//         for (auto val : it)
+//         {
+//             cout << val << " ";
+//         }
+//         cout << endl;
+//     }
+// }
+
+// class Solution
+// {
+// public:
+//     void merge(vector<int> &nums1, int m, vector<int> &nums2, int n)
+//     {
+//         for (int i = m; i < nums1.size(); i++)
+//         {
+//             nums1[i] = nums2[i - n];
+//         }
+//         sort(nums1.begin(), nums1.end());
+//     }
+// };
+
+// Merge two sorted arrays without extra space
+
+// VAriant 1
+// IN this solution we have to return both array in sorted order without changing their sizes like in this example
+//  nums1 = {1, 4, 8, 10}, nums2 = {2, 3, 9};
+// 1 2 3 4
+// 8 9 10
+// class Solution{
+// public:
+//     void merge(vector<int> &nums1, int m, vector<int> &nums2, int n)
+//     {
+//         vector<int> combined;
+//         for (int i = 0; i < m; i++)
+//         {
+//             combined.push_back(nums1[i]);
+//         }
+//         for (int i = 0; i < n; i++)
+//         {
+//             combined.push_back(nums2[i]);
+//         }
+//         sort(combined.begin(), combined.end());
+//         int j = 0;
+//         for (int i =0; i<combined.size(); i++){
+//             if(i<m){
+//                 // nums1[i] = combined[i];
+//                 nums1[i] = combined[i];
+//             }
+//             else{
+//                 nums2[j] = combined[i];
+//                 j++;
+//             }
+//         }
+
+//     }
+// };
+// Variant 2 when we have to return the both array combined in first array and also sorted
+// class Solution {
+// public:
+//     void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+//         for (int i = 0; i < n; i++)
+//         {
+//             nums1.push_back(nums2[i]);
+//         }
+//         sort(nums1.begin(), nums1.end());
+//     }
+// };
+
+// Variant 3: When in first array already zero are given in place of second array elements -- leetcode variant
+// class Solution
+// {
+// public:
+//     void merge(vector<int> &nums1, int m, vector<int> &nums2, int n)
+//     {
+//         for (int i = 0; i < n; i++)
+//         {
+//             nums1[m + i] = nums2[i];
+//         }
+//         sort(nums1.begin(), nums1.end());
+//     }
+// };
+
+// int main()
+// {
+//     Solution sol;
+//     vector<int> nums1 = {1, 4, 8, 10, 0, 0, 0}, nums2 = {2, 3, 9};
+//     int m = 4, n = 3;
+//     sol.merge(nums1, m, nums2, n);
+
+//     for (auto it : nums1)
+//     {
+//         cout << it << " ";
+//     }
+//     // cout << endl;
+//     // for (auto it : nums2)
+//     // {
+//     //     cout << it << " ";
+//     // }
+// }
+
+// Maximum product subarray
+
+// Brute Force
+// class Solution {
+// public:
+//     int maxProduct(vector<int>& nums) {
+//         if(nums.size() == 1){
+//             return nums[0];
+//         }
+//         int max_prod = INT_MIN;
+//         for (int i = 0; i < nums.size(); i++)
+//         {
+//             int prod = nums[i];
+//             max_prod = max(max_prod, prod);
+//             for (int j = i+1; j < nums.size(); j++)
+//             {
+//                 prod *= nums[j];
+//                 max_prod = max(max_prod, prod);
+//             }
+
+//         }
+
+//         return max_prod;
+//     }
+// };
+
+// optimal approach
+// class Solution
+// {
+// public:
+//     int maxProduct(vector<int> &nums)
+//     {
+//         int max_prod = INT_MIN;
+//         int suf = 1, pre = 1;
+//         for (int i = 0; i < nums.size(); i++)
+//         {
+//             if (pre == 0)
+//                 pre = 1;
+//             if (suf == 0)
+//                 suf = 1;
+//             pre *= nums[i];
+//             suf *= nums[nums.size() - i - 1];\
+
+//             max_prod = max(max_prod, max(pre, suf));
+//         }
+//         return max_prod;
+//     }
+// };
+
+// Find the repeating and missing number
+
+// better solution
+
+// class Solution {
+//   public:
+//     vector<int> findTwoElement(vector<int>& arr) {
+//         map<int, int> mpp;
+//         int sum = 0;
+//         int maxi = arr[0];
+//         for (int i = 0; i < arr.size(); i++)
+//         {
+//             maxi = max(maxi, arr[i]);
+//             mpp[arr[i]]++;
+//         }
+
+//         int missing ;
+//         int total_sum = 0;
+//         for (int i = 1; i <= maxi; i++)
+//         {
+//             total_sum += i;
+//         }
+
+//         int repeating;
+//         for(auto it:mpp){
+//             sum += it.first;
+//             if(it.second != 1){
+//                 repeating = it.first;
+//             }
+//         }
+//         if( total_sum-sum == 0){
+//             missing = arr.size();
+//         }
+//         else{
+//             missing = total_sum-sum ;
+//         }
+//         return {repeating, missing };
+//     }
+// };
+
+// optimal soltution (using maths - using two equations)
+
+// class Solution {
+//   public:
+//     vector<int> findTwoElement(vector<int>& arr) {
+//         int n = arr.size();
+//         long long Sn,S2n;
+//         Sn = (n*(n+1))/2;
+//         S2n = ((n*(n+1))*(2*n+1))/6;
+//         long long s =0, s2 = 0;
+//         for (int i = 0; i < arr.size(); i++)
+//         {
+//             s+= arr[i];
+//             s2+= arr[i]*arr[i];
+//         }
+//         long long val1 = s - Sn;
+//         long long val2 = s2 - S2n;
+//         val2 = val2/val1;
+//         long long x = (val1 + val2)/2; // repeating
+//         long long y = x - val1;  // missing
+
+//         return {(int)x,(int)y};
+//     }
+// };
 
 class Solution
 {
 public:
-    vector<vector<int>> mergeOverlap(vector<vector<int>> &arr)
+    long long int numberOfInversions(vector<int> nums)
     {
-        vector<vector<int>> ans;
-        sort(arr.begin(), arr.end());
-        for (int i = 0; i < arr.size(); i++)
+        long long count = 0;
+        for (int i = 0; i < nums.size(); i++)
         {
-            if(ans.empty() || ans.back()[1] < arr[i][0]){
-                ans.push_back(arr[i]);
-            }   
-            else{
-                ans.back()[1] = max(arr[i][1], ans.back()[1]);
+            for (int j = i + 1; j < nums.size(); j++)
+            {
+                if(nums[j]<nums[i]){
+                    count++;
+                }
             }
         }
-        return ans;
+        return count;
     }
 };
 
 int main()
 {
     Solution sol;
-    vector<vector<int>> nums = {{1, 3},{2, 4},{6, 8},{9, 10}};
-    vector<vector<int>> ans = sol.mergeOverlap(nums);
-    for (auto it : ans)
-    {
-        for (auto val : it)
-        {
-            cout << val << " ";
-        }
-        cout << endl;
-    }
+    vector<int> nums = {5,3,2,1,4};
+    long long ans = sol.numberOfInversions(nums);
+    cout << ans;
 }
