@@ -156,23 +156,47 @@ using namespace std;
     
 // }
 
-class Solution{
-public:
-    vector<int> searchRange(vector<int> &nums, int target) {
-        int low =0, high = nums.size()-1;
-        int first, last = -1;
-        while (low<=high)
-        {
-            int mid = (low+high)/2;
-            if(nums[mid] == target){
-                if(nums[mid+1] != target){
-                    last = mid;
-                }
-                if(nums[mid-1] != target){
-                    first = mid;
-                }
-            }
-        }
-        
-    }
-};
+
+// class Solution {
+// public:
+//     vector<int> searchRange(vector<int>& nums, int target) {
+//         int n = nums.size();
+//         if (n == 0) return {-1, -1};
+
+//         // Find first occurrence
+//         int low = 0, high = n - 1, first = -1;
+//         while (low <= high) {
+//             int mid = low + (high - low) / 2;
+//             if (nums[mid] >= target) {
+//                 high = mid - 1;
+//             } else {
+//                 low = mid + 1;
+//             }
+//             if (nums[mid] == target) first = mid;
+//         }
+
+//         // Find last occurrence
+//         low = 0, high = n - 1;
+//         int last = -1;
+//         while (low <= high) {
+//             int mid = low + (high - low) / 2;
+//             if (nums[mid] <= target) {
+//                 low = mid + 1;
+//             } else {
+//                 high = mid - 1;
+//             }
+//             if (nums[mid] == target) last = mid;
+//         }
+
+//         return {first, last};
+//     }
+// };
+
+
+// int main(){
+//     Solution sol;
+//     vector<int> nums = {5, 7, 7, 7, 8, 8, 8}; int x = 8;
+//     vector<int> ans = sol.searchRange(nums, x);
+//     cout<<ans[0]<<ans[1];
+
+// }
