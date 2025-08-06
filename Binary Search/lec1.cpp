@@ -153,9 +153,10 @@ using namespace std;
 //     vector<int> nums = {3, 4, 4, 7, 8, 10};
 //     int x = 2;
 //     pair<int, int> ans = getFloorAndCeil(nums, nums.size(), x);
-    
+
 // }
 
+// Find the first or last occurrence of a given number in a sorted array
 
 // class Solution {
 // public:
@@ -192,7 +193,6 @@ using namespace std;
 //     }
 // };
 
-
 // int main(){
 //     Solution sol;
 //     vector<int> nums = {5, 7, 7, 7, 8, 8, 8}; int x = 8;
@@ -200,3 +200,220 @@ using namespace std;
 //     cout<<ans[0]<<ans[1];
 
 // }
+
+// 	Count occurrences of a number in a sorted array with duplicates
+
+// int main()
+// {
+//     vector<int> nums = {5, 7, 7, 7, 8, 8, 8};
+//     int x = 5;
+//     int low = 0;
+//     int first_pos = nums.size();
+//     int high = nums.size() - 1;
+//     // --- lower bound concept ----
+//     while (low <= high)
+//     {
+//         int mid = low + (high -low)/2;
+//         if(nums[mid] >= x){
+//             first_pos = mid;
+//             high = mid-1;
+//         }
+//         else{
+//             low = mid +1;
+//         }
+//     }
+
+// //  ---- upper bound conecpt-----
+//     low = 0; high = nums.size()-1;
+//     int last_pos = nums.size();
+//     while (low <= high)
+//     {
+
+//         int mid = low +(high-low)/2;
+//         if(nums[mid] > x){
+//             last_pos = mid;
+//             high = mid-1;
+//         }
+//         else{
+//             low = mid+1;
+//         }
+//     }
+
+//     cout<<last_pos-first_pos;
+
+// }
+
+// Search in rotated sorted array - I
+// class Solution {
+// public:
+//     int search(vector<int>& arr, int target) {
+//          int low = 0, high = arr.size()-1;
+//         while(low<= high){
+//             int mid = low +(high -low)/2;
+//             if(arr[mid] == target){
+//                 return mid;
+//             }
+//             if(arr[low] <= arr[mid]){
+//                 if(arr[low] <= target && target <= arr[mid]){
+//                     high = mid-1;
+//                 }
+//                 else{
+//                     low = mid+1;
+//                 }
+//             }
+//             else{
+//                 if(arr[mid] <= target && target <= arr[high]){
+//                     low = mid+1;
+//                 }
+//                 else{
+//                     high = mid-1;
+//                 }
+//             }
+//         }
+//         return -1;
+//     }
+// };
+
+// Search in rotated sorted array - II
+
+// class Solution {
+// public:
+//     bool search(vector<int>& arr, int target) {
+//          int low = 0, high = arr.size()-1;
+//         while(low<= high){
+//             int mid = low +(high -low)/2;
+//             if(arr[mid] == target){
+//                 return true;
+//             }
+//             if(arr[low] == arr[mid] && arr[mid] == arr[high]){
+//                 low++, high--;
+//                 continue;
+//             }
+//             if(arr[low] <= arr[mid]){
+//                 if(arr[low] <= target && target <= arr[mid]){
+//                     high = mid-1;
+//                 }
+//                 else{
+//                     low = mid+1;
+//                 }
+//             }
+//             else{
+//                 if(arr[mid] <= target && target <= arr[high]){
+//                     low = mid+1;
+//                 }
+//                 else{
+//                     high = mid-1;
+//                 }
+//             }
+//         }
+//         return false;
+//     }
+// };
+
+// Find minimum in Rotated Sorted Array
+
+// class Solution {
+// public:
+//     int search(vector<int>& arr, int target) {
+//          int low = 0, high = arr.size()-1;
+//         while(low<= high){
+//             int mid = low +(high -low)/2;
+//             if(arr[mid] == target){
+//                 return mid;
+//             }
+//             if(arr[low] <= arr[mid]){
+//                 if(arr[low] <= target && target <= arr[mid]){
+//                     high = mid-1;
+//                 }
+//                 else{
+//                     low = mid+1;
+//                 }
+//             }
+//             else{
+//                 if(arr[mid] <= target && target <= arr[high]){
+//                     low = mid+1;
+//                 }
+//                 else{
+//                     high = mid-1;
+//                 }
+//             }
+//         }
+//         return -1;
+//     }
+// };
+
+
+// Find out how many times has an array been rotated - Logic I used is same as finding minimum but in this ques I am returning the index of minimum element.  Because array would have rotated no of times the minimum element is positioned. 
+
+// class Solution
+// {
+// public:
+//     int findMin(vector<int> &arr)
+//     {
+//         int low = 0, high = arr.size() - 1;
+//         int minimum = INT_MAX;
+//         int index = 0;
+//         while (low <= high)
+//         {
+//             int mid = low + (high - low) / 2;
+//             if (arr[low] <= arr[mid] && arr[mid] > arr[high])
+//             {
+//                 low = mid + 1;
+//             }
+//             else
+//             {
+//                 high = mid - 1;
+//             }
+//             if(arr[mid] < minimum){
+//                 minimum = arr[mid];
+//                 index = mid;
+
+//             }
+//         }
+//         return index;
+//     }
+// };
+
+// int main()
+// {
+//     Solution sol;
+//     vector<int> nums = {4, 5, 6, 7, 0, 1, 2, 3};
+//     int ans = sol.findMin(nums);
+//     cout<<ans;
+// }
+
+// I have to write it in notebook - it's concept
+
+
+class Solution {
+public:
+    int singleNonDuplicate(vector<int>& arr) {
+        int low = 0, high = arr.size() - 1;
+        if (arr.size() == 1) {
+            return arr[0];
+        }
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+            if (mid == 0 || mid == arr.size() - 1) {
+                return arr[mid];
+            }
+            if (arr[mid] != arr[mid - 1] && arr[mid] != arr[mid + 1]) {
+                return arr[mid];
+            }
+            if (arr[mid] == arr[mid + 1]) {
+                if (mid % 2 == 0) {
+                    low = mid + 1;
+                } else {
+                    high = mid - 1;
+                }
+            } else if (arr[mid] == arr[mid - 1]) {
+                if ((mid - 1) % 2 == 0) {
+                    low = mid + 1;
+                } else {
+                    high = mid - 1;
+                }
+            }
+        }
+        return -1;
+    }
+};
