@@ -385,35 +385,66 @@ using namespace std;
 // I have to write it in notebook - it's concept
 
 
-class Solution {
-public:
-    int singleNonDuplicate(vector<int>& arr) {
-        int low = 0, high = arr.size() - 1;
-        if (arr.size() == 1) {
-            return arr[0];
-        }
-        while (low <= high) {
-            int mid = low + (high - low) / 2;
-            if (mid == 0 || mid == arr.size() - 1) {
-                return arr[mid];
-            }
-            if (arr[mid] != arr[mid - 1] && arr[mid] != arr[mid + 1]) {
-                return arr[mid];
-            }
-            if (arr[mid] == arr[mid + 1]) {
-                if (mid % 2 == 0) {
-                    low = mid + 1;
-                } else {
-                    high = mid - 1;
-                }
-            } else if (arr[mid] == arr[mid - 1]) {
-                if ((mid - 1) % 2 == 0) {
-                    low = mid + 1;
-                } else {
-                    high = mid - 1;
-                }
-            }
-        }
-        return -1;
-    }
-};
+// class Solution {
+// public:
+//     int singleNonDuplicate(vector<int>& arr) {
+//         int low = 0, high = arr.size() - 1;
+//         if (arr.size() == 1) {
+//             return arr[0];
+//         }
+//         while (low <= high) {
+//             int mid = low + (high - low) / 2;
+//             if (mid == 0 || mid == arr.size() - 1) {
+//                 return arr[mid];
+//             }
+//             if (arr[mid] != arr[mid - 1] && arr[mid] != arr[mid + 1]) {
+//                 return arr[mid];
+//             }
+//             if (arr[mid] == arr[mid + 1]) {
+//                 if (mid % 2 == 0) {
+//                     low = mid + 1;
+//                 } else {
+//                     high = mid - 1;
+//                 }
+//             } else if (arr[mid] == arr[mid - 1]) {
+//                 if ((mid - 1) % 2 == 0) {
+//                     low = mid + 1;
+//                 } else {
+//                     high = mid - 1;
+//                 }
+//             }
+//         }
+//         return -1;
+//     }
+// };
+
+// find peak element in array and return its index
+// int findPeakElement(vector<int> &arr) {
+//     int n = arr.size(); //Size of array.
+
+//     // Edge cases:
+//     if (n == 1) return 0;
+//     if (arr[0] > arr[1]) return 0;
+//     if (arr[n - 1] > arr[n - 2]) return n - 1;
+
+//     int low = 1, high = n - 2;
+//     while (low <= high) {
+//         int mid = (low + high) / 2;
+
+//         //If arr[mid] is the peak:
+//         if (arr[mid - 1] < arr[mid] && arr[mid] > arr[mid + 1])
+//             return mid;
+
+//         // If we are in the left:
+//         if (arr[mid] > arr[mid - 1]) low = mid + 1;
+
+//         // If we are in the right:
+//         // Or, arr[mid] is a common point:
+//         else high = mid - 1;
+//     }
+//     // Dummy return statement
+//     return -1;
+// }
+
+
+

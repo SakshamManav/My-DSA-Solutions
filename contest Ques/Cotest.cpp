@@ -86,30 +86,29 @@ using namespace std;
 
 // };
 
-
 // Unable to do this ques
 // class Solution {
 // public:
 //     int countTrapezoids(vector<vector<int>>& points) {
 //         int count = 0;
 //         int xaxis = 0;
-//         for(int i=0; i<points.size(); i++){ 
+//         for(int i=0; i<points.size(); i++){
 //             for (int j = 0; j < points[j].size(); j++)
 //             {
 //                 for(int k = 1; i<points.size(); i++){
 //                     if(points[i][1] == points[k][1]){
-//                         xaxis++; 
+//                         xaxis++;
 //                         break;
 //                     }
 //                 }
 //             }
 //         }
-        
+
 //         if(xaxis > 3){
 //              return xaxis -3;
 //         }
 //         return 0;
-       
+
 //     }
 // };
 // int main()
@@ -120,3 +119,14 @@ using namespace std;
 //     int ans = sol.countTrapezoids(nums);
 //     cout << ans;
 // }
+
+class Solution
+{
+public:
+
+};
+
+int main()
+{
+    Solution sol;
+}
