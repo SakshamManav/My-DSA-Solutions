@@ -235,7 +235,6 @@ using namespace std;
 //     }
 // };
 
-
 // Optimal solution using Binary Search
 // class Solution
 // {
@@ -296,20 +295,18 @@ using namespace std;
 // Example 1:
 // Input Format: N = 5, arr[] = {1,2,3,4,5}, limit = 8
 // Result: 3
-// Explanation: We can get a sum of 15(1 + 2 + 3 + 4 + 5) if we choose 1 as a divisor. 
+// Explanation: We can get a sum of 15(1 + 2 + 3 + 4 + 5) if we choose 1 as a divisor.
 // The sum is 9(1 + 1 + 2 + 2 + 3)  if we choose 2 as a divisor. Upon dividing all the elements of the array by 3, we get 1,1,1,2,2 respectively. Now, their sum is equal to 7 <= 8 i.e. the threshold value. So, 3 is the minimum possible answer.
 
+// Brute force
+//  class Solution {
+//    public:
+//      int smallestDivisor(vector<int>& nums, int k) {
+//          int maxi = INT_MIN;
+//          for(int i =0; i<nums.size(); i++){
+//              maxi = max(maxi, nums[i]);
+//          }
 
-
-//Brute force
-// class Solution {
-//   public:
-//     int smallestDivisor(vector<int>& nums, int k) {
-//         int maxi = INT_MIN;
-//         for(int i =0; i<nums.size(); i++){
-//             maxi = max(maxi, nums[i]);
-//         }
-        
 //         for(int i =1; i<= maxi; i++){
 //             int sum = 0;
 //             for(int j=0; j<nums.size(); j++){
@@ -320,7 +317,7 @@ using namespace std;
 //             }
 //         }
 //         return -1;
-        
+
 //     }
 // };
 
@@ -337,9 +334,9 @@ using namespace std;
 //         int ans = 0;
 //         while(low <= high){
 //             int sum = 0;
-        
+
 //             int mid = low + (high - low)/2;
-            
+
 //             for(int j=0; j<nums.size(); j++){
 //                 sum += ceil((double)nums[j]/mid);
 //             }
@@ -352,10 +349,9 @@ using namespace std;
 //             }
 //         }
 //         return ans;
-        
+
 //     }
 // };
-
 
 // Capacity to ship packages in D days
 
@@ -388,7 +384,6 @@ using namespace std;
 //         return -1;
 //     }
 // };
-
 
 // Optimal solution -- binary search
 // class Solution {
@@ -424,3 +419,197 @@ using namespace std;
 //         return ans;
 //     }
 // };
+
+// Kth Missing Positive Number
+
+// Brute Force -- not better brute force
+
+// class Solution {
+// public:
+//     int findKthPositive(vector<int>& nums, int k) {
+//         int maxi = INT_MIN;
+//         for(int i=0; i<nums.size(); i++){
+//             maxi = max(maxi, nums[i]);
+//         }
+//         int count = 0;
+
+//         vector<int> ans;
+//         for(int i=1; i<= maxi; i++){
+//             bool is_present = false;
+//            for(int j=0; j<nums.size(); j++){
+//             if( i == nums[j]){
+//                is_present = true;
+//                 break;
+//             }
+//            }
+//            if(!is_present){
+//             ans.push_back(i);
+//            }
+//         }
+
+//         for(auto it:ans){
+//             cout<<it<<' ';
+//         }
+//         cout<<endl;
+//         if(ans.size() < k){
+//             k= k -ans.size();
+//             return nums[nums.size() -1] +k;
+//         }
+//         // int cur_count = 0;
+//         return ans[k-1];
+//     }
+// };
+
+// Better
+// class Solution {
+//   public:
+//     int kthMissing(vector<int> &nums, int k) {
+//  for(int i =0; i<nums.size(); i++){
+//      if(nums[i] <= k) k++;
+//      else break;
+//  }
+//  return k;
+//     }
+// };
+
+// optimal
+// class Solution {
+//   public:
+//     int findKthPositive(vector<int> &nums, int k) {
+
+//     }
+// };
+
+// int main(){
+//     Solution sol;
+//     vector<int> nums = {2,3,5,9,10}; int k =1;
+//     int ans = sol.findKthPositive(nums, k);
+//     cout<<ans;
+// }
+
+// class Solution
+// {
+// public:
+//   bool can_we_place_cows(vector<int> nums, int idx, int cows)
+//   {
+//     int cnt_cows = 1;
+//     int last = nums[0];
+//     for (int i = 1; i < nums.size(); i++)
+//     {
+//       if (nums[i] - last >= idx)
+//       {
+//         cnt_cows++;
+//         last = nums[i];
+//       }
+//       if (cnt_cows >= cows)
+//       {
+//         return true;
+//       }
+//     }
+
+//     return false;
+//   }
+//   int aggressiveCows(vector<int> &nums, int k)
+//   {
+//     sort(nums.begin(), nums.end());
+//     int mini = nums[0];
+//     int maxi = nums[nums.size() - 1];
+//     cout << maxi << " " << mini << endl;
+//     for (int i = 1; i <= maxi - mini; i++)
+//     {
+//       if (!can_we_place_cows(nums, i, k))
+//       {
+//         return i - 1;
+//       }
+//     }
+//     return maxi - mini;
+//   }
+// };
+
+// int main()
+// {
+//   Solution sol;
+//   vector<int> nums = {0, 3, 4, 7, 10, 9};
+//   int k = 4;
+//   int ans = sol.aggressiveCows(nums, k);
+//   cout << ans;
+// }
+
+// Aggresive Cows
+
+// class Solution
+// {
+// public:
+//   bool can_we_place_cows(vector<int> nums, int idx, int cows)
+//   {
+//     int cnt_cows = 1;
+//     int last = nums[0];
+//     for (int i = 1; i < nums.size(); i++)
+//     {
+//       if (nums[i] - last >= idx)
+//       {
+//         cnt_cows++;
+//         last = nums[i];
+//       }
+//       if (cnt_cows >= cows)
+//       {
+//         return true;
+//       }
+//     }
+
+//     return false;
+//   }
+//   int aggressiveCows(vector<int> &nums, int k)
+//   {
+//     sort(nums.begin(), nums.end());
+//     int mini = nums[0];
+//     int maxi = nums[nums.size() -1];
+
+//     int low = 0, high = maxi-mini;
+//     while (low <= high)
+//     {
+//       int mid = low + (high - low)/2;
+//       if(!can_we_place_cows(nums, mid, k)){
+//         high = mid-1;
+//       }else{
+//         low = mid+1;
+//       }
+//     }
+//     return high; // -- as it will point to the answer but we can also use ans variable to store the answer
+//   }
+// };
+
+// int main()
+// {
+//   Solution sol;
+//   vector<int> nums = {0, 3, 4, 7, 10, 9};
+//   int k = 4;
+//   int ans = sol.aggressiveCows(nums, k);
+//   cout << ans;
+// }
+
+class Solution {
+public:
+    int findPages(vector<int> &nums, int m)  {
+        int maxi = INT_MIN;
+        for (int i = 0; i < nums.size(); i++)
+        {
+          maxi = max(nums[i], maxi);
+        }
+        for (int i = 0; i < nums.size(); i++)
+        {
+          
+        }
+        
+        
+    }
+};
+
+int main()
+{
+  Solution sol;
+  vector<int> nums = {12, 34, 67, 90};
+  int k = 2;
+  int ans = sol.findPages(nums, k);
+  cout << ans;
+}
