@@ -588,28 +588,104 @@ using namespace std;
 //   cout << ans;
 // }
 
-class Solution {
-public:
-    int findPages(vector<int> &nums, int m)  {
-        int maxi = INT_MIN;
-        for (int i = 0; i < nums.size(); i++)
-        {
-          maxi = max(nums[i], maxi);
-        }
-        for (int i = 0; i < nums.size(); i++)
-        {
+// class Solution {
+// public:
+//     int findPages(vector<int> &nums, int m)  {
+//         int maxi = INT_MIN;
+//         for (int i = 0; i < nums.size(); i++)
+//         {
+//           maxi = max(nums[i], maxi);
+//         }
+//         for (int i = 0; i < nums.size(); i++)
+//         {
           
-        }
+//         }
         
         
-    }
-};
+//     }
+// };
 
-int main()
-{
-  Solution sol;
-  vector<int> nums = {12, 34, 67, 90};
-  int k = 2;
-  int ans = sol.findPages(nums, k);
-  cout << ans;
-}
+// int main()
+// {
+//   Solution sol;
+//   vector<int> nums = {12, 34, 67, 90};
+//   int k = 2;
+//   int ans = sol.findPages(nums, k);
+//   cout << ans;
+// }
+
+
+
+
+// Book allocations
+
+
+// Brute force
+
+// class Solution {
+//   public:
+  
+//   int count_page(vector<int> arr, int page){
+//       int stu = 1, pagesstudent = 0;
+//       for(int i=0; i<arr.size(); i++){
+//         if(pagesstudent + arr[i] <= page){
+//             pagesstudent += arr[i];
+//         } else{
+//             stu++;
+//             pagesstudent = arr[i];
+//         }
+//       }
+//       return stu;
+//   }
+//     int findPages(vector<int> &arr, int k) {
+//         if(arr.size() < k) return -1;
+//         int low = INT_MIN, high = 0;
+//         for(int i=0; i<arr.size(); i++){
+//             low = max(low, arr[i]);
+//             high += arr[i];
+//         }
+        
+//         for(int i=low; i<= high; i++){
+//             int cnt_sum = count_page(arr, i);
+//             if (cnt_sum <= k) return i;
+//         }
+//         return low;
+//     }
+// };
+
+// Optimal Approach
+
+// class Solution {
+//   public:
+  
+//   int count_page(vector<int> arr, int page){
+//       int stu = 1, pagesstudent = 0;
+//       for(int i=0; i<arr.size(); i++){
+//         if(pagesstudent + arr[i] <= page){
+//             pagesstudent += arr[i];
+//         } else{
+//             stu++;
+//             pagesstudent = arr[i];
+//         }
+//       }
+//       return stu;
+//   }
+//     int findPages(vector<int> &arr, int k) {
+//         if(arr.size() < k) return -1;
+//         int low = INT_MIN, high = 0;
+//         for(int i=0; i<arr.size(); i++){
+//             low = max(arr[i], low);
+//             high += arr[i];
+//         }
+//         while(low <= high){
+//             int mid = low + (high - low)/2;
+//             int cnt = count_page(arr, mid);
+//             if(cnt > k){
+//                 low = mid+1;
+//             }else{
+//                 high = mid -1;
+//             }
+//         }
+//         return low;
+//     }
+// };
