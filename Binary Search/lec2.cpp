@@ -689,3 +689,48 @@ using namespace std;
 //         return low;
 //     }
 // };
+
+
+
+
+// lec 3-- 
+
+// 2d array binary search
+
+class Solution {
+  public:
+    int rowWithMax1s(vector<vector<int>> &arr) {
+        int count =0;
+        int ans = -1;
+        for(int i=0; i<arr.size(); i++){
+            int cur_count = 0;
+            int low = 0; int high = arr[i].size()-1;
+            int zero_count = 0;
+            while(low<=high){
+                int mid = low + (high-low)/2;
+                if(arr[i][mid] == 0){
+                    // zero_count = mid;
+                    low = mid+1;
+                }else{
+                    high = mid-1;
+                }
+                
+            }
+            cout<<low<<" ";
+            int one_count = (arr[i].size())-low;
+            if(one_count > count){
+                ans = i;
+                count = one_count;
+            }
+        }
+        return ans;
+    }
+};
+
+
+int main(){
+    Solution sol;
+    vector<vector<int>> arr = {{0,0,0},{0,0,1}, {0,0,1}};
+    int ans = sol.rowWithMax1s(arr);
+    cout << ans;
+}
