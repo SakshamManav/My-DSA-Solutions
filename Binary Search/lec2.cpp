@@ -697,40 +697,192 @@ using namespace std;
 
 // 2d array binary search
 
-class Solution {
-  public:
-    int rowWithMax1s(vector<vector<int>> &arr) {
-        int count =0;
-        int ans = -1;
-        for(int i=0; i<arr.size(); i++){
-            int cur_count = 0;
-            int low = 0; int high = arr[i].size()-1;
-            int zero_count = 0;
-            while(low<=high){
-                int mid = low + (high-low)/2;
-                if(arr[i][mid] == 0){
-                    // zero_count = mid;
-                    low = mid+1;
-                }else{
-                    high = mid-1;
-                }
+// class Solution {
+//   public:
+//     int rowWithMax1s(vector<vector<int>> &arr) {
+//         int count =0;
+//         int ans = -1;
+//         for(int i=0; i<arr.size(); i++){
+//             int cur_count = 0;
+//             int low = 0; int high = arr[i].size()-1;
+//             int zero_count = 0;
+//             while(low<=high){
+//                 int mid = low + (high-low)/2;
+//                 if(arr[i][mid] == 0){
+//                     // zero_count = mid;
+//                     low = mid+1;
+//                 }else{
+//                     high = mid-1;
+//                 }
                 
-            }
-            cout<<low<<" ";
-            int one_count = (arr[i].size())-low;
-            if(one_count > count){
-                ans = i;
-                count = one_count;
-            }
-        }
-        return ans;
-    }
-};
+//             }
+//             cout<<low<<" ";
+//             int one_count = (arr[i].size())-low;
+//             if(one_count > count){
+//                 ans = i;
+//                 count = one_count;
+//             }
+//         }
+//         return ans;
+//     }
+// };
 
 
-int main(){
-    Solution sol;
-    vector<vector<int>> arr = {{0,0,0},{0,0,1}, {0,0,1}};
-    int ans = sol.rowWithMax1s(arr);
-    cout << ans;
-}
+// int main(){
+//     Solution sol;
+//     vector<vector<int>> arr = {{0,0,0},{0,0,1}, {0,0,1}};
+//     int ans = sol.rowWithMax1s(arr);
+//     cout << ans;
+// }
+
+
+
+// Search in a 2d sorted array
+
+// Better solution
+
+// class Solution {
+// public:
+//     bool searchMatrix(vector<vector<int>>& matrix, int target) {
+//         if (target < matrix[0][0] ||
+//             target > matrix[matrix.size() - 1][matrix[0].size() - 1]) {
+//                 // cout<<"hello";
+//             return false;
+//         }
+        
+//         int ans_row = 0;
+//         for(int i=0; i<matrix.size(); i++){
+//             if(matrix[i][matrix[i].size()-1] >= target){
+//                 ans_row = i;
+//                 break;
+//             }
+//         }
+//         cout<<ans_row<<endl;
+//         int low =0; int high = matrix[ans_row].size()-1;
+//         while(low<=high){
+//             int mid = low +(high-low)/2;
+//             if(matrix[ans_row][mid] == target){
+//                 return true;
+//             }else if(matrix[ans_row][mid] > target){
+//                 high = mid-1;
+//             }else{
+//                 low = mid+1;
+//             }
+//         }
+//         return false;
+//     }
+// };
+
+
+// //Optimal solution using binary search
+
+
+// class Solution {
+// public:
+//     bool searchMatrix(vector<vector<int>>& matrix, int target) {
+//         int row = matrix.size();
+//         int column = matrix[0].size();
+//         int low = 0, high = row * column -1;
+//         while(low <= high){
+//             int mid = low +(high - low)/2;
+//             int m = mid/column, n = mid % column;
+//             if(matrix[m][n] == target){
+//                 return true;
+//             }
+//             else if(matrix[m][n] > target){
+//                 high = mid-1;
+//             }
+//             else low = mid+1;
+//         }
+//         return false;
+
+//     }
+// };
+
+// int main(){
+//     Solution sol;
+//     vector<vector<int>> matrix = {
+//         {42,47,50,55,60,62},
+//         {66,71,75,79,82,83},
+//         {86,87,89,90,95,96},
+//         {98,102,104,107,109,114},
+//         {115,118,119,122,126,131},
+//         {135,139,143,147,151,155},
+//         {156,157,158,160,161,164},
+//         {169,174,176,181,183,184},
+//         {186,189,194,199,201,203},
+//         {207,210,213,216,219,221},
+//         {225,230,233,237,239,242},
+//         {246,249,250,255,256,258},
+//         {262,264,265,266,271,272},
+//         {274,279,283,288,292,295},
+//         {298,302,303,304,309,314},
+//         {317,320,325,328,329,330},
+//         {331,332,336,341,342,347},
+//         {352,354,358,360,363,366},
+//         {367,368,370,375,376,379},
+//         {384,385,388,390,391,393},
+//         {398,401,405,406,407,411},
+//         {412,415,420,423,428,433}
+//     };
+//     int target = 314;
+//     bool found = sol.searchMatrix(matrix, target);
+//     cout << (found ? "Found" : "Not Found") << endl;
+//     return 0;
+// }
+
+
+// Search in a 2D matrix - II
+
+// OPtimal solution 
+// class Solution {
+// public:
+//     bool searchMatrix(vector<vector<int>>& matrix, int target) {
+//         int row = 0, col = matrix[0].size() - 1;
+//         while (row < matrix.size() && col >= 0) {
+//             if (matrix[row][col] == target) {
+//                 return true;
+//             } else if (matrix[row][col] > target) {
+//                 col--;
+//             } else {
+//                 row++;
+//             }
+//         }
+//         return false;
+//     }
+// };
+
+// Find peak element
+
+// Brute Force
+
+// class Solution {
+// public:
+//     vector<int> findPeakGrid(vector<vector<int>>& mat) {
+//         int n = mat.size();
+//         int m = mat[0].size();
+//         for (int i = 0; i < mat.size(); i++) {
+            
+//             for (int j = 0; j < mat[i].size(); j++) {
+//                 bool ispeak = true;
+//                 // top-
+//                 if (i > 0 && mat[i][j] < mat[i - 1][j])
+//                     ispeak = false;
+//                 // right
+//                 if (j < m - 1 && mat[i][j] < mat[i][j + 1])
+//                     ispeak = false;
+//                 // bottom
+//                 if (i < n - 1 && mat[i][j] < mat[i + 1][j])
+//                     ispeak = false;
+//                 // left
+//                 if (j > 0 && mat[i][j] < mat[i][j - 1])
+//                     ispeak = false;
+
+//                 if (ispeak) {
+//                     return {i, j};
+//                 }
+//             }
+//         }
+//         return {-1, -1};
+//     }
+// };
