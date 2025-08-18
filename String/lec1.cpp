@@ -17,8 +17,8 @@ using namespace std;
 
 //         int st =0, end = s.length()-1;
 //         while(st <= end){
-//             if(!isAlphaNumeric(s[st])){ st++; continue;}
-//             if(!isAlphaNumeric(s[end])) {end--; continue;
+//             if(!isalnum(s[st])){ st++; continue;}
+//             if(!isalnum(s[end])) {end--; continue;
 // }
 //             if(tolower(s[st]) != tolower(s[end])){
 //                 return false;
@@ -36,23 +36,82 @@ using namespace std;
 //     cout<<sol.isPalindrome(s);
 // }
 
+// class Solution {
+// public:
+//     string removeOccurrences(string s, string part) {
+        
+//         while(s.find(part) != string::npos )
+//         {
+//             int idx = s.find(part);
+//             s.erase(idx, part.length());
+//         }
+//         return s;
+//     }
+// };
+
+// Remove parenthesis 
+// class Solution {
+// public:
+//     string removeOuterParentheses(string s) {
+//       int counter = 0;
+//       string ans;
+//       for(int i=0; i<s.size(); i++){
+//         if(s[i] == ')') counter--;
+//         if(counter != 0) ans.push_back(s[i]);
+//         if(s[i] =='(') counter++;
+//       }
+//       return ans;
+//     }
+// };
+
+// int main(){
+//     Solution sol;
+//     string s = "(()())(())(()(()))";
+//     sol.removeOuterParentheses(s);
+// }
+
+
+// brute force
+
 class Solution {
 public:
-    string removeOccurrences(string s, string part) {
-        
-        while(s.find(part) != string::npos )
-        {
-            int idx = s.find(part);
-            s.erase(idx, part.length());
+    string reverseWords(string s) {
+        if(s[0] == ' ') { s.erase(0, 1);};
+        if(s[s.size()-1] == ' '){s.erase(s.size()-1, 1);}
+        string a = "";
+        string cur = "";
+        for(int i=s.length()-1; i>=0; i--){
+            if(s[i] == ' '){
+                
+                reverse(cur.begin() , cur.end());
+                a = a+cur+" ";
+                
+                cur = "";
+            }else{
+                cur.push_back(s[i]);
+            }
+
         }
-        return s;
+        string start_word = "";
+        cur = "";
+        bool is_space = false;
+        for(int i=0; i<s.size(); i++){
+            if(s[i] == ' '){
+                is_space = true;
+                break; 
+            }else{
+                cur.push_back(s[i]);
+            }
+        }
+        if(is_space){
+            return a + cur;
+        }
+          return cur;   
     }
 };
 
 int main(){
-    string s = "axxxxyyyyb", part = "xy";
     Solution sol;
-    string ans = sol.removeOccurrences(s, part);
-    cout<<ans;
-    // cout<<s.find(part);
+    string s = "the sky is blue";
+    sol.reverseWords(s);
 }
