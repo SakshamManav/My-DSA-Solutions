@@ -1,5 +1,7 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
+
+// Remove outermost Paranthesis
 
 // class Solution {
 // public:
@@ -8,7 +10,7 @@ using namespace std;
 //             return true;
 //         }
 //             return false;
-        
+
 //     }
 //     bool isPalindrome(string s) {
 //         // for(char &ch: s){
@@ -26,7 +28,7 @@ using namespace std;
 //             st++, end--;
 //         }
 //         return true;
-        
+
 //     }
 // };
 
@@ -36,10 +38,12 @@ using namespace std;
 //     cout<<sol.isPalindrome(s);
 // }
 
+// Remove all occurences of a substring
+
 // class Solution {
 // public:
 //     string removeOccurrences(string s, string part) {
-        
+
 //         while(s.find(part) != string::npos )
 //         {
 //             int idx = s.find(part);
@@ -49,7 +53,7 @@ using namespace std;
 //     }
 // };
 
-// Remove parenthesis 
+// Remove parenthesis
 // class Solution {
 // public:
 //     string removeOuterParentheses(string s) {
@@ -70,48 +74,127 @@ using namespace std;
 //     sol.removeOuterParentheses(s);
 // }
 
+// REverse words in string
 
 // brute force
 
-class Solution {
-public:
-    string reverseWords(string s) {
-        if(s[0] == ' ') { s.erase(0, 1);};
-        if(s[s.size()-1] == ' '){s.erase(s.size()-1, 1);}
-        string a = "";
-        string cur = "";
-        for(int i=s.length()-1; i>=0; i--){
-            if(s[i] == ' '){
-                
-                reverse(cur.begin() , cur.end());
-                a = a+cur+" ";
-                
-                cur = "";
-            }else{
-                cur.push_back(s[i]);
-            }
+// class Solution {
+// public:
+//     string reverseWords(string s) {
+//         stack<string> st;
+//         s+= " ";
+//         string str;
+//         for (int i = 0; i < s.size(); i++)
+//         {
+//             if(s[i] == ' '){
+//                 st.push(str);
+//                 str = ' ';
+//             }else{
+//                 str += s[i];
+//             }
+//         }
+//         string ans = "";
 
+//         while (st.size() != 1)
+//         {
+//             ans += st.top() + " ";
+//             st.pop();
+//         }
+//         ans += st.top();
+//         return ans;
+//     }
+// };
+
+// Optimal
+// class Solution {
+// public:
+//     string reverseWords(string s) {
+//         int left = 0, right = s.length()-1;
+//         string temp = "";
+//         string ans = "";
+//         while (left <= right)
+//         {
+//             char ch = s[left];
+//             if(ch != ' '){
+//                 temp += ch;
+//             }else if(ch == ' '){
+//                 if(ans != ""){
+//                     ans = temp + " " + ans;
+//                 }else{
+//                     ans = temp;
+//                 }
+//                 temp = "";
+//             }
+//             left ++;
+//         }
+
+//         if(temp != ""){
+//             if (ans!="") ans = temp + " " + ans;
+//         else ans = temp;
+//         }
+//         return ans;
+//     }
+// };
+
+// int main(){
+//     Solution sol;
+//     string s = "the sky is blue";
+//     sol.reverseWords(s);
+// }
+
+
+// Longest Common Prefix (done by myself without any help)
+
+
+// our answer string size will always from zero to smallest string in the vector.
+class Solution
+{
+public:
+    string longestCommonPrefix(vector<string> &strs)
+    {
+        int max_idx = INT_MAX;
+        for (int i = 0; i < strs.size(); i++)
+        {
+            max_idx = min(max_idx, (int)strs[i].size());
         }
-        string start_word = "";
-        cur = "";
-        bool is_space = false;
-        for(int i=0; i<s.size(); i++){
-            if(s[i] == ' '){
-                is_space = true;
-                break; 
-            }else{
-                cur.push_back(s[i]);
+        if(max_idx == 0){
+            return "";
+        }
+        
+        
+        string ans = strs[0].substr(0, max_idx);
+        
+        int cur_idx = 0;
+        int j = 0;
+        int check = max_idx;
+        
+        while (j < max_idx)
+        {
+            bool is_true = true;
+            for (int i = 0; i < strs.size(); i++)
+            {
+                if(i == strs.size()-1 && strs[i].substr(0, ans.size()) == ans) {
+                    return ans;
+                }
+                if (strs[i].substr(0, ans.size()) != ans){
+                    ans.resize(ans.size()-1);
+                    is_true = false;
+                    break;
+                }
             }
+            // cout<<ans<<" ";
+            if(is_true){
+                return ans;
+            }
+        j++;
         }
-        if(is_space){
-            return a + cur;
-        }
-          return cur;   
+        return "";
     }
 };
 
-int main(){
+int main()
+{
+    vector<string> str = {"flower","flow","flight"};
     Solution sol;
-    string s = "the sky is blue";
-    sol.reverseWords(s);
+    cout<<sol.longestCommonPrefix(str);
 }
