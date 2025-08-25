@@ -293,9 +293,7 @@ using namespace std;
 //     }
 // };
 
-
-
-// Roman to integer 
+// Roman to integer
 
 // this solution will work but we are doing some hardcore checks
 // class Solution
@@ -330,11 +328,10 @@ using namespace std;
 //                 ans += mp[s[i]];
 //             }
 //         }
-        
+
 //         return ans;
 //     }
 // };
-
 
 // in this we are not doing hardcore checks
 
@@ -363,10 +360,219 @@ using namespace std;
 //     }
 // };
 
+// int main()
+// {
+//     string str = "MCMXCIV";
+
+//     Solution sol;
+//     cout << sol.romanToInt(str);
+// }
+
+// String to integer
+
+// this solution is not working--- >>>
+// class Solution {
+// public:
+//     int myAtoi(string s) {
+//         int i = 0;
+//         for (i = 0; i < s.size(); i++) {
+//             if (s[i] != ' ') {
+//                 break;
+//             }
+//         }
+//         string ans = "";
+//         int sign_count = 0;
+//         if((s[i] >= 'a' && s[i] < 'z') || (s[i] >= 'A' && s[i] < 'Z')){
+//             return 0;
+//         }
+//         // cout<<i;
+//         for (int j = i; j < s.size(); j++) {
+//             if ((s[j] >= 'a' && s[j] <= 'z') || (s[j] >= 'A' && s[j] <= 'Z')) {
+//                 break;
+//             } else if (((s[j] == '+' || s[j] == '-') && (sign_count > 0)) ||
+//                        (s[j] == ' ' || s[j] == '.')) {
+//                 break;
+//             }else if(((s[j] == '+' || s[j] == '-') && (sign_count == 0))){
+//                 ans += s[j];
+//             }
+//             else{
+//                 ans += s[j];
+//             }
+//         }
+//         if(ans.size() == 0){
+//             return 0;
+//         }
+//         if((ans.size() == 1) && (ans[0] == '+' || ans[0] == '-')) return 0;
+//         if(stoi(ans) < pow(-2, 31)) return pow(-2,31);
+//         if(stoi(ans) > (pow(2, 31)-1)) return pow(2, 31)-1;
+
+//         return stoi(ans);
+
+//     }
+// };
+
+// optimal solution
+
+// class Solution {
+// public:
+//     int myAtoi(string s) {
+//         int i = 0;
+//         // 1. Skip leading spaces
+//         while (i < s.size() && s[i] == ' ') i++;
+
+//         // 2. Handle sign
+//         int sign = 1;
+//         if (i < s.size() && (s[i] == '+' || s[i] == '-')) {
+//             if (s[i] == '-') sign = -1;
+//             i++;
+//         }
+
+//         // 3. Parse digits
+//         long long num = 0;
+//         while (i < s.size() && isdigit(s[i])) {
+//             num = num * 10 + (s[i] - '0');
+
+//             // 4. Clamp if out of range
+//             if (sign * num <= INT_MIN) return INT_MIN;
+//             if (sign * num >= INT_MAX) return INT_MAX;
+
+//             i++;
+//         }
+
+//         return (int)(sign * num);
+//     }
+// };
+// int main(){
+//     Solution sol;
+//     cout<<sol.myAtoi("-");
+// }
+
+// longest palindrome substring
+
+// Not working for even substrings -- >>
+// class Solution {
+// public:
+//     string longestPalindrome(string s) {
+//         string ans = "";
+//         string left_part = "";
+//         string right_part = "";
+
+//         for(int i=1; i<s.size(); i++){
+//             string temp = "";
+//             left_part = "";
+//             right_part = "";
+//             int low = i-1, high = i+1;
+//             while(low >= 0 && high <= s.size()-1){
+//                 if(s[low] == s[high]){
+//                     left_part += s[low];
+//                     right_part += s[high];
+//                     temp = left_part + s[i] + right_part;
+//                     if(ans.size() < temp.size()){
+//                         ans = temp;
+//                     }
+//                     low--, high++;
+//                 }else{
+//                     break;
+//                 }
+//             }
+//         }
+//         // cout<<ans;
+//         return ans;
+//     }
+// };
+
+// class Solution {
+// public:
+//     void expand(string &s, int left, int right, int &start, int &maxLen) {
+//         while (left >= 0 && right < s.size() && s[left] == s[right]) {
+//             if (right - left + 1 > maxLen) {
+//                 start = left;
+//                 maxLen = right - left + 1;
+//             }
+//             left--;
+//             right++;
+//         }
+//     }
+
+//     string longestPalindrome(string s) {
+//         if (s.empty()) return "";
+//         int start = 0, maxLen = 1;
+
+//         for (int i = 0; i < s.size(); i++) {
+//             expand(s, i, i, start, maxLen);     // odd length
+//             expand(s, i, i + 1, start, maxLen); // even length
+//         }
+
+//         return s.substr(start, maxLen);
+//     }
+// };
+
+// int main(){
+//     Solution sol;
+//     cout<<sol.longestPalindrome("babad");
+// }
+
+// Sum of beauty of all substrings
+
+
+// Not optimal
+// class Solution
+// {
+// public:
+//     int beautySum(string s)
+//     {
+//         int n = s.size();
+//         int sum = 0;
+       
+//         for (int i = 0; i < n; i++) {
+//         unordered_map<char, int> mp;
+//         for (int j = i; j < n; j++) {
+//             mp[s[j]]++;
+
+//             int high = 0, low = INT_MAX;
+//             for (auto &it : mp) {
+//                 high = max(high, it.second);
+//                 low = min(low, it.second);
+//             }
+//             sum += (high - low);
+//         }
+//     }
+
+//         return sum;
+//     }
+// };
+
+
+// Opimal
+class Solution {
+public:
+    int beautySum(string s) {
+        int n = s.size();
+    int sum = 0;
+
+    for (int i = 0; i < n; i++) {
+        vector<int> freq(26, 0);
+
+        for (int j = i; j < n; j++) {
+            freq[s[j] - 'a']++;
+
+            int high = 0, low = INT_MAX;
+            for (int f : freq) {
+                if (f > 0) {
+                    high = max(high, f);
+                    low = min(low, f);
+                }
+            }
+
+            sum += (high - low);
+        }
+    }
+
+    return sum;
+    }
+};
 int main()
 {
-    string str = "MCMXCIV";
-    
     Solution sol;
-    cout << sol.romanToInt(str);
+    sol.beautySum("aabcbaa");
 }
