@@ -65,15 +65,34 @@
 // arr.splice(1,1,23,34)
 // console.log(arr)
 
-let arr = ["a", "b", "c"];
+// let arr = ["a", "b", "c"];
 
-arr.forEach((val, i) => {
-  console.log(i, val);
-});
+// arr.forEach((val, i) => {
+//   console.log(i, val);
+// });
 
-console.warn("It is not good")
+// console.warn("It is not good")
 // console.log(arr.toString())
 // console.log(arr.pop())
 // arr = arr.join("+")
 
 // console.log(typeof(arr))
+
+
+// function sum(a,b){
+//   console.log(a+b);
+// }
+// function mult(a,b){
+//   console.log(a*b);
+// }
+// function calculator(a, b, sum){
+//   sum(a,b);
+// }
+
+// calculator(1,2,sum);
+// calculator(2,3,mult);
+
+let promise = new Promise((res, rej)=>{
+  console.log("promise");
+  res("Success")
+})
